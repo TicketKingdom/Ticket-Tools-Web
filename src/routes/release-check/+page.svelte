@@ -1,6 +1,7 @@
 <script>
     import Select from "svelte-select";
     import Switch from "$lib/common/Switch.svelte";
+    import TicketContent from "$lib/TicketContent/index.svelte";
 
     import etrix from "../../assets/site-logos/etrix.png";
     import eventbrite from "../../assets/site-logos/eventbrite.png";
@@ -133,6 +134,7 @@
                 </button>
             </div>
         </div>
+        <TicketContent site_name={active_leftSidebar} />
     </div>
 </div>
 
@@ -195,7 +197,7 @@
 
     .right_content {
         width: 80%;
-        border-left: 2px solid rgb(177, 176, 176);
+        border-left: 2px solid #ccc;
         padding: 20px;
     }
 
