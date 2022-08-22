@@ -121,11 +121,12 @@ article.dt-table {
 	border-radius: 12px;
 }
 
+
 .datatable tbody tr {
 	border-bottom: 1px solid #ccc;
 }
 
-.datatable tbody tr td {
+.datatable table tbody tr td {
 	padding-top: 8px !important;
 	padding-bottom: 8px !important;
 	font-size: 12px;
@@ -166,3 +167,20 @@ article.dt-table {
 	border: none !important;
 	border-radius: 8px !important;
 }
+
+.datatable .truncation_text{
+	max-width: 450px!important;
+	min-width: 450px!important;
+	padding-left: 20px!important;
+	padding-right: 20px!important;
+}
+
+svg.primary{
+	color: blue
+} 
+svg.success{
+	color: green
+} 
+svg.danger{
+	color: red
+} 
