@@ -6,6 +6,7 @@
 	--font-mono: 'Fira Mono', monospace;
 	--pure-white: #ffffff;
 	--blue: #00AEEF;
+	--green: #28A745;
 	--primary-color: #b9c6d2;
 	--secondary-color: #d0dde9;
 	--tertiary-color: #edf0f8;
@@ -111,14 +112,11 @@ button:focus:not(:focus-visible) {
 	border-radius: 12px;
 }
 
-.datatable.scroll-y {
-	height: 100% !important;
-}
-
 article.dt-table {
 	border-bottom: none !important;
 	height: 100% !important;
 	border-radius: 12px;
+	overflow-x: hidden !important;
 }
 
 
@@ -168,19 +166,21 @@ article.dt-table {
 	border-radius: 8px !important;
 }
 
-.datatable .truncation_text{
-	max-width: 450px!important;
-	min-width: 450px!important;
-	padding-left: 20px!important;
-	padding-right: 20px!important;
+.datatable .truncation_text {
+	max-width: 450px !important;
+	min-width: 450px !important;
+	padding-left: 20px !important;
+	padding-right: 20px !important;
 }
 
-svg.primary{
+svg.primary {
 	color: blue
-} 
-svg.success{
+}
+
+svg.success {
 	color: green
-} 
-svg.danger{
+}
+
+svg.danger {
 	color: red
-} 
+}
