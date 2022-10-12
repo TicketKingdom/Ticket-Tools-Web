@@ -21,6 +21,7 @@
 		"cookie": "^0.4.1",
 		"svelte-feather-icons": "^4.0.0",
 		"svelte-select": "^4.4.7",
-		"svelte-simple-datatables": "0.1.25"
+		"svelte-simple-datatables": "0.1.25",
+		"svelte-simple-modal": "^1.4.1"
 	}
 }
