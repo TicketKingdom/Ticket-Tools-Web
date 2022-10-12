@@ -34,7 +34,7 @@
 </script>
 
 <svelte:head>
-    <title>Release-check</title>
+    <title>Release-Checker</title>
     <meta name="description" content="About this app" />
 </svelte:head>
 

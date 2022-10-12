@@ -34,7 +34,7 @@
 </script>
 
 <svelte:head>
-    <title>X-Checker</title>
+    <title>Release-Checker</title>
     <meta name="description" content="About this app" />
 </svelte:head>
 
@@ -48,7 +48,7 @@
                 <img src={etrix} alt="site-logo" />
                 <p>Etrix</p>
             </li>
-            <li
+            <!-- <li
                 class={active_leftSidebar === "eventbrite" ? "active" : ""}
                 on:click={() => clickTab("eventbrite")}
             >
@@ -96,12 +96,12 @@
             >
                 <img src={prekindle} alt="site-logo" />
                 <p>Prekindle</p>
-            </li>
+            </li> -->
         </ul>
     </div>
     <div class="right_content">
         <div class="mini_setting">
-            <div style="min-width: 250px" class="captcha">
+            <!-- <div style="min-width: 250px" class="captcha">
                 <Select
                     {items}
                     {value}
@@ -124,8 +124,8 @@
                         design="slider"
                     />
                 {/if}
-            </div>
-            <div class="buttons">
+            </div> -->
+            <div class="buttons" style="float:right">
                 <button class="icon_button">
                     <SettingsIcon />
                 </button>
@@ -203,13 +203,14 @@
 
     .right_content .mini_setting {
         display: flex;
-        justify-content: space-between;
+        /* justify-content: space-between; */
+        justify-content: flex-end;
         align-items: center;
     }
-    .right_content .mini_setting .captcha {
+    /* .right_content .mini_setting .captcha {
         --itemHoverBG: #55cdf8;
         --itemIsActiveBG: #55cdf8;
-    }
+    } */
 
     .buttons {
         display: flex;

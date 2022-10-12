@@ -9,7 +9,7 @@
     <slot />
 </main>
 
-<footer>Copyright 2022 @GlistenSTAR</footer>
+<!-- <footer>Copyright 2022 @GlistenSTAR</footer> -->
 
 <style>
     main {

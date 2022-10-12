@@ -7,7 +7,7 @@
     <div class="corner">
         <a href="/">
             <img src={logo} alt="SvelteKit" />
-            <h2><b>T</b>ickets <b>C</b>hecker</h2>
+            <h2><b>T</b>ickets <b>T</b>racker</h2>
         </a>
     </div>
 
@@ -24,6 +24,9 @@
             </li>
             <li class:active={$page.url.pathname === "/x-check"}>
                 <a sveltekit:prefetch href="/x-check">X-Checker</a>
+            </li>
+            <li class:active={$page.url.pathname === "/soldout-track"}>
+                <a sveltekit:prefetch href="/soldout-track">SoldOut-tracker</a>
             </li>
         </ul>
         <svg viewBox="0 0 2 3" aria-hidden="true">
@@ -115,7 +118,7 @@
         padding: 0 1em;
         color: var(--heading-color);
         font-weight: 700;
-        font-size: 0.8rem;
+        font-size: 12px;
         text-transform: uppercase;
         letter-spacing: 0.1em;
         text-decoration: none;

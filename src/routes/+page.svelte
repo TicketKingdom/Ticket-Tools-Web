@@ -15,6 +15,7 @@
                 <img src="svelte-welcome.png" alt="Welcome" />
             </picture>
         </span>
+        Welcome to Ticket tracker.<br/>
 		You can get tickets from 8 web sites and can see results.
     </h1>
 </section>
