@@ -1,8 +1,20 @@
-<script>
-    let url, interval;
-    const addNewEvent = (e) => {
+<script lang="ts">
+    import API from "../../../utils/api";
+    let baseUrl = "http://127.0.0.1:8037/api";
+
+    let url = "https://www.etix.com/ticket/v/3556/coyote-joes",
+        interval = 5000;
+
+    const addNewEvent = async (e) => {
         event.preventDefault();
-        console.log(url, interval);
+        let data = {
+            url: url,
+            interval: interval,
+        };
+
+        await API.post(baseUrl + "/newEvent", data).then((res) => {
+            console.log(res.data);
+        });
     };
 </script>
 
