@@ -14,7 +14,9 @@
     import NewModal from "./modal/NewModal.svelte";
 
     import { Datatable, rows } from "$lib/common/SimpleDatatables";
-    import { newModalSoldOut } from "../../store";
+    import { newModalSoldOut, etixs } from "../../store";
+    import { getEtixs } from "$lib/api/etix";
+    import isEmpty from "../../utils/is-empty";
 
     import etrix from "../../assets/site-logos/etrix.png";
     import eventbrite from "../../assets/site-logos/eventbrite.png";
@@ -26,6 +28,15 @@
     import bigtickets from "../../assets/site-logos/bigtickets.svg";
 
     let active_leftSidebar = "etrix";
+
+    const initLoad = async () => {
+        let result = await getEtixs();
+        if (result) {
+            etixs.set(result);
+        }
+    };
+
+    $: initLoad();
 
     // let items = [
     //     { value: "capmonster", label: "Capmonster" },
@@ -50,6 +61,7 @@
         columnFilter: false,
         searchInput: false,
         sortable: true,
+        screenX: false,
         labels: {
             noRows: "No entries to found",
             previous: "<",
@@ -61,7 +73,10 @@
         },
     };
 
-    const data = [];
+    let data;
+    etixs.subscribe((V) => {
+        data = V;
+    });
 
     const openNewModal = () => {
         newModalSoldOut.set(NewModal);
@@ -182,7 +197,7 @@
                 <Datatable {settings} {data}>
                     <thead>
                         <th width="5%" data-key="index"> # </th>
-                        <th width="5%" data-key="name"> Event Name</th>
+                        <th width="5%" data-key="eventName"> Event Name</th>
                         <th width="20%"> Url</th>
                         <th width="5%" data-key="result"> Result</th>
                         <th width="5%"> Interval</th>
@@ -190,13 +205,13 @@
                         <th width="5%" data-key="last_check_date">
                             Last Check</th
                         >
-                        <th>Actions </th>
+                        <th width="5%">Actions </th>
                     </thead>
                     <tbody>
                         {#each $rows as row, index}
                             <tr>
                                 <td>{index + 1}</td>
-                                <td>{row.name}</td>
+                                <td>{row.eventName}</td>
                                 <td
                                     style=" overflow: hidden;
                                             text-overflow: ellipsis; "
@@ -204,15 +219,10 @@
                                 >
                                     {row.url}</td
                                 >
-                                <td>{row.date}</td>
-                                <td>{row.result}</td>
+                                <td >{!isEmpty(row.result) ? row.result : ""}</td>
                                 <td>{row.interval}</td>
-                                <td>{row.notication}</td>
-                                <td>{row.row}</td>
-                                <td>{row.added_date}</td>
-                                <td>{row.last_check_date}</td>
-                                <td>{row.cart_time}</td>
-                                <td>{row.presale_pw}</td>
+                                <td>{row.createdAt.slice(0, -5).replace('T', ' ')}</td>
+                                <td>{row.updatedAt.slice(0, -5).replace('T', ' ')}</td>
                                 <td>
                                     <PlayIcon size="1.5x" class="primary" />
                                     <EditIcon size="1.5x" class="success" />
@@ -349,5 +359,9 @@
     .new_ticket button:hover {
         background-color: #218838;
         border-color: #1e7e34;
+    }
+
+    tbody tr {
+        text-align: center;
     }
 </style>

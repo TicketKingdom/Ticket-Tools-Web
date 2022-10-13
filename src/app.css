@@ -105,41 +105,64 @@ button:focus:not(:focus-visible) {
 		font-size: 2.4rem;
 	}
 }
-
 .datatable {
 	background-color: white !important;
-	min-width: 768px;
 	border-radius: 12px;
+}
+
+.datatable.scroll-y {
+	height: 100% !important;
 }
 
 article.dt-table {
 	border-bottom: none !important;
 	height: 100% !important;
+	overflow-x: auto;
 	border-radius: 12px;
-	overflow-x: hidden !important;
 }
 
-
-.datatable tbody tr {
-	border-bottom: 1px solid #ccc;
+article.dt-table table{
+	min-width: 730px;
 }
 
-.datatable table tbody tr td {
-	padding-top: 8px !important;
-	padding-bottom: 8px !important;
+.dt-header {
+	background-color: white !important;
+}
+
+.datatable .datatable-thead {
+	height: 30px;
+	border-bottom: 1px solid rgb(187, 186, 186);
+}
+
+.datatable tbody tr td {
+	padding-top: 16px;
+	padding-bottom: 16px;
+	border-bottom: 1px solid rgb(187, 186, 186);
 	font-size: 12px;
 }
 
-.datatable tbody tr:first-child td {
-	padding-top: 14px !important
+.datatable section.dt-pagination {
+	background-color: transparent !important;
+	padding-top: 10px
 }
 
-.datatable section.dt-pagination {
-	padding-top: 30px;
-	border-radius: 18px;
+.datatable section.dt-pagination button {
+	color: black !important;
+	width: 24px !important;
+	min-width: 24px !important;
+	height: 24px !important;
+	font-size: 12px !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 10px !important;
+	border: none !important;
+	border-radius: 8px !important;
 }
 
 .datatable thead:not([style*='hidden']) th {
+	background-color: transparent !important;
+	border-bottom: 1px solid rgb(187, 186, 186) !important;
 	padding: 8px 0 0 8px !important;
 	padding-left: 0px !important;
 	z-index: 0;
@@ -151,27 +174,9 @@ article.dt-table {
 
 .datatable .dt-header thead:not([style*='hidden']) {
 	width: 100% !important;
+	border-radius: 12px;
 }
 
-.datatable section.dt-pagination button {
-	width: 24px !important;
-	min-width: 24px !important;
-	height: 24px !important;
-	font-size: 14px !important;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-left: 10px !important;
-	border: none !important;
-	border-radius: 8px !important;
-}
-
-.datatable .truncation_text {
-	max-width: 450px !important;
-	min-width: 450px !important;
-	padding-left: 20px !important;
-	padding-right: 20px !important;
-}
 
 svg.primary {
 	color: blue

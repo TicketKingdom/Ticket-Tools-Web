@@ -41,6 +41,9 @@
     .datatable {
         position: relative;
     }
+    .datatable.scroll-y {
+        height: 160px;
+    }
     .css.datatable {
         background: #fff;
     }

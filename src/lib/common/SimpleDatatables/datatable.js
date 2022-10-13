@@ -3,7 +3,7 @@ import { options } from './stores/options.js'
 import { columns } from './stores/columns.js'
 import { datatableWidth, pageNumber } from './stores/state.js'
 import { globalFilters, local } from './stores/filters.js'
-
+import isEmpty from '../../../utils/is-empty'
 
 export const datatable = {
     init: () => {
@@ -21,21 +21,23 @@ export const datatable = {
         columns.set([])
     },
     setRows: (arr) => {
-        arr.forEach( (item) => {
-            Object.keys(item).forEach( (k) => {
-                if (item[k] === null) {
-                    item[k] = ''
-                }
+        if (!isEmpty(arr)) {
+            arr.forEach((item) => {
+                Object.keys(item).forEach((k) => {
+                    if (item[k] === null) {
+                        item[k] = ''
+                    }
+                })
             })
-        })
-        data.set(arr)
+            data.set(arr)
+        }
         return
     },
     getSize: () => {
         const parent = document.querySelector('section.datatable').parentNode
         const style = getComputedStyle(parent)
         const rect = parent.getBoundingClientRect()
-        const getNumber = (pxValue) => { return parseFloat(pxValue.replace('px', ''))  } 
+        const getNumber = (pxValue) => { return parseFloat(pxValue.replace('px', '')) }
         return {
             parentWidth: rect.width,
             parentHeight: rect.height,
@@ -48,14 +50,14 @@ export const datatable = {
         }
     },
     resize: () => {
-        if ( !document.querySelector('section.datatable') ) return
+        if (!document.querySelector('section.datatable')) return
         const size = datatable.getSize()
         const tableContainer = document.querySelector('section.datatable .dt-table')
-        if ( options.get().scrollY ) {
+        if (options.get().scrollY) {
             tableContainer.style.height = datatable.getTableContainerHeight(size.parentHeight * size.height) + 'px'
             columns.redraw()
         }
-        datatableWidth.set( size.parentWidth * size.width )
+        datatableWidth.set(size.parentWidth * size.width)
         if (size.parentWidth * size.width < document.querySelector('section.datatable table').offsetWidth) {
             tableContainer.style.overflowX = 'auto'
         }
@@ -73,7 +75,7 @@ export const datatable = {
         document.querySelector('section.datatable .dt-table').style.height = height - calc.reduce(sum) + 'px'
     },
     addEventScrollX: () => {
-        if ( options.get().scrollY ) {
+        if (options.get().scrollY) {
             document.querySelector('section.datatable .dt-table').addEventListener('scroll', (e) => {
                 document.querySelector('.dt-header').style.left = (-1 * e.target.scrollLeft) + 'px'
             })
@@ -99,7 +101,7 @@ export const datatable = {
         columns.set(columnList)
     },
     getKey: (key) => {
-        if (!key)  return 
+        if (!key) return
         if (key && key.indexOf('=>') > 0) {
             return new Function(`'use strict';return (${key})`)()
         }

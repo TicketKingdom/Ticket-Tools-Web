@@ -12,7 +12,7 @@
             interval: interval,
         };
 
-        await API.post(baseUrl + "/newEvent", data).then((res) => {
+        await API.post(baseUrl + "/etix/new", data).then((res) => {
             console.log(res.data);
         });
     };
