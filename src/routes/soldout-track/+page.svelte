@@ -36,7 +36,9 @@
         }
     };
 
-    $: initLoad();
+    $: if(true){
+        initLoad();
+    }
 
     // let items = [
     //     { value: "capmonster", label: "Capmonster" },

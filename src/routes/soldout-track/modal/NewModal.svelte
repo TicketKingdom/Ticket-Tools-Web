@@ -1,4 +1,9 @@
 <script lang="ts">
+    import { etixs, newModalSoldOut } from "../../../store";
+
+    import { getEtixs } from "$lib/api/etix";
+    import { LogInIcon } from "svelte-feather-icons";
+
     import API from "../../../utils/api";
     let baseUrl = "http://127.0.0.1:8037/api";
 
@@ -12,8 +17,15 @@
             interval: interval,
         };
 
-        await API.post(baseUrl + "/etix/new", data).then((res) => {
-            console.log(res.data);
+        await API.post(baseUrl + "/etix/new", data).then(async (res) => {
+            if (res.result == 0) {
+                newModalSoldOut.set(false);
+                let result = await getEtixs();
+                if (result) {
+                    console.log(result);
+                    etixs.set(result);
+                }
+            }
         });
     };
 </script>
