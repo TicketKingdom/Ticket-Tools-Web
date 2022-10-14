@@ -209,13 +209,13 @@
             <div class="table_content">
                 <Datatable {settings} {data}>
                     <thead>
-                        <th width="5%" data-key="index"> # </th>
+                        <th width="5%"> # </th>
                         <th width="5%" data-key="eventName"> Event Name</th>
                         <th width="20%"> Url</th>
                         <th width="5%" data-key="result"> Result</th>
                         <th width="5%"> Interval</th>
-                        <th width="5%" data-key="added_date"> Added On</th>
-                        <th width="5%" data-key="last_check_date">
+                        <th width="5%" data-key="createdAt"> Added On</th>
+                        <th width="5%" data-key="updatedAt">
                             Last Check</th
                         >
                         <th width="5%">Actions </th>
