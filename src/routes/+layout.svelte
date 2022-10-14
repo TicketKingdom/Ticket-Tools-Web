@@ -9,8 +9,6 @@
     <slot />
 </main>
 
-<!-- <footer>Copyright 2022 @GlistenSTAR</footer> -->
-
 <style>
     main {
         flex: 1;
@@ -23,21 +21,5 @@
         align-items: center;
 
         font-family: var(--font-mono);
-    }
-
-    footer {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 40px;
-		
-        font-family: var(--font-mono);
-    }
-
-    @media (min-width: 480px) {
-        footer {
-            padding: 40px 0;
-        }
     }
 </style>
