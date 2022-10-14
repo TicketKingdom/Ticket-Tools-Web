@@ -1,5 +1,5 @@
 <script>
-    import Select from "svelte-select";
+    import { getContext } from "svelte";
     import {
         PlusIcon,
         PlayIcon,
@@ -7,15 +7,19 @@
         DeleteIcon,
         SettingsIcon,
     } from "svelte-feather-icons";
-    import Modal from "svelte-simple-modal";
 
+    import Modal from "svelte-simple-modal";
+    import OwnModal from "$lib/common/OwnModal.svelte";
+
+    import Select from "svelte-select";
     import Switch from "$lib/common/Switch.svelte";
-    import TicketContent from "$lib/TicketContent/index.svelte";
+
     import NewModal from "./modal/NewModal.svelte";
+    import EditModal from "./modal/EditModal.svelte";
 
     import { Datatable, rows } from "$lib/common/SimpleDatatables";
-    import { newModalSoldOut, etixs } from "../../store";
-    import { getEtixs } from "$lib/api/etix";
+    import { editModalSoldOut, newModalSoldOut, etixs } from "../../store";
+    import { getEtixs, deleteEtix } from "$lib/api/etix";
     import isEmpty from "../../utils/is-empty";
 
     import etrix from "../../assets/site-logos/etrix.png";
@@ -30,13 +34,10 @@
     let active_leftSidebar = "etrix";
 
     const initLoad = async () => {
-        let result = await getEtixs();
-        if (result) {
-            etixs.set(result);
-        }
+        await getEtixs();
     };
 
-    $: if(true){
+    $: if (true) {
         initLoad();
     }
 
@@ -82,6 +83,16 @@
 
     const openNewModal = () => {
         newModalSoldOut.set(NewModal);
+    };
+
+    const editModalOpen = (id) => {
+        editModalSoldOut.set(id);
+    };
+
+    const deleteEvent = async (id) => {
+        if (window.confirm("Do you really want to delete this event?")) {
+            await deleteEtix(id);
+        }
     };
 </script>
 
@@ -221,14 +232,32 @@
                                 >
                                     {row.url}</td
                                 >
-                                <td >{!isEmpty(row.result) ? row.result : ""}</td>
+                                <td>{!isEmpty(row.result) ? row.result : ""}</td
+                                >
                                 <td>{row.interval}</td>
-                                <td>{row.createdAt.slice(0, -5).replace('T', ' ')}</td>
-                                <td>{row.updatedAt.slice(0, -5).replace('T', ' ')}</td>
+                                <td
+                                    >{row.createdAt
+                                        .slice(0, -5)
+                                        .replace("T", " ")}</td
+                                >
+                                <td
+                                    >{row.updatedAt
+                                        .slice(0, -5)
+                                        .replace("T", " ")}</td
+                                >
                                 <td>
-                                    <PlayIcon size="1.5x" class="primary" />
-                                    <EditIcon size="1.5x" class="success" />
-                                    <DeleteIcon size="1.5x" class="danger" />
+                                    <span>
+                                        <PlayIcon size="1.5x" class="primary" />
+                                    </span>
+                                    <span on:click={editModalOpen(row._id)}>
+                                        <EditIcon size="1.5x" class="success" />
+                                    </span>
+                                    <span on:click={() => deleteEvent(row._id)}>
+                                        <DeleteIcon
+                                            size="1.5x"
+                                            class="danger"
+                                        />
+                                    </span>
                                 </td>
                             </tr>
                         {/each}
@@ -237,6 +266,9 @@
             </div>
         </div>
     </div>
+    {#if $editModalSoldOut}
+        <OwnModal modalContent={EditModal} />
+    {/if}
 </div>
 
 <style>

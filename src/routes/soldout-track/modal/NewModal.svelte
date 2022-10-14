@@ -1,37 +1,23 @@
-<script lang="ts">
-    import { etixs, newModalSoldOut } from "../../../store";
+<script>
+    import { newModalSoldOut } from "../../../store";
 
-    import { getEtixs } from "$lib/api/etix";
-    import { LogInIcon } from "svelte-feather-icons";
+    import { newEtix } from "$lib/api/etix";
+    let url, interval;
 
-    import API from "../../../utils/api";
-    let baseUrl = "http://127.0.0.1:8037/api";
-
-    let url = "https://www.etix.com/ticket/v/3556/coyote-joes",
-        interval = 5000;
-
-    const addNewEvent = async (e) => {
+    const addNewEvent = async () => {
         event.preventDefault();
         let data = {
             url: url,
             interval: interval,
         };
-
-        await API.post(baseUrl + "/etix/new", data).then(async (res) => {
-            if (res.result == 0) {
-                newModalSoldOut.set(false);
-                let result = await getEtixs();
-                if (result) {
-                    console.log(result);
-                    etixs.set(result);
-                }
-            }
+        await newEtix(data).then(() => {
+            newModalSoldOut.set(null);
         });
     };
 </script>
 
 <div class="newModal">
-    <h1>New Event</h1>
+    <h2>New Event</h2>
     <form on:submit={addNewEvent}>
         <div class="input_group">
             <label for="url">url:</label>
@@ -48,6 +34,10 @@
 </div>
 
 <style>
+    h2 {
+        text-align: center;
+        font-size: 28px;
+    }
     .newModal {
         font-size: 20px;
         padding-top: 10px;
