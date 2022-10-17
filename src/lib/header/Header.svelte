@@ -7,7 +7,7 @@
     <div class="corner">
         <a href="/">
             <img src={logo} alt="SvelteKit" />
-            <h2><b>T</b>ickets <b>T</b>racker</h2>
+            <h2><b>T</b>ickets <b>T</b>ools</h2>
         </a>
     </div>
 
@@ -20,7 +20,7 @@
                 <a sveltekit:prefetch href="/">Home</a>
             </li>
             <li class:active={$page.url.pathname === "/release-check"}>
-                <a sveltekit:prefetch href="/release-check">Release-Checker</a>
+                <a sveltekit:prefetch href="/release-check">Counter</a>
             </li>
             <li class:active={$page.url.pathname === "/x-check"}>
                 <a sveltekit:prefetch href="/x-check">X-Checker</a>
