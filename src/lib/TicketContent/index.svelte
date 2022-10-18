@@ -1,5 +1,10 @@
 <script>
-    import { PlusIcon, PlayIcon, EditIcon, DeleteIcon } from "svelte-feather-icons";
+    import {
+        PlusIcon,
+        PlayIcon,
+        EditIcon,
+        DeleteIcon,
+    } from "svelte-feather-icons";
     import { Datatable, rows } from "$lib/common/SimpleDatatables";
 
     export let site_name = "";
@@ -89,7 +94,8 @@
                                     text-overflow: ellipsis; "
                             class="truncation_text"
                         >
-                            {row.url}</td>
+                            {row.url}</td
+                        >
                         <td>{row.date}</td>
                         <td>{row.result}</td>
                         <td>{row.interval}</td>
@@ -100,9 +106,9 @@
                         <td>{row.cart_time}</td>
                         <td>{row.presale_pw}</td>
                         <td>
-                            <PlayIcon size="1.5x" class="primary"/>
-                            <EditIcon size="1.5x" class="success"/>
-                            <DeleteIcon size="1.5x" class="danger"/>
+                            <PlayIcon size="1.5x" class="primary" />
+                            <EditIcon size="1.5x" class="success" />
+                            <DeleteIcon size="1.5x" class="danger" />
                         </td>
                     </tr>
                 {/each}
@@ -145,17 +151,7 @@
         margin-top: 20px;
     }
 
-    thead {
-        border-radius: 1px solid grey;
-    }
-    th {
-        text-align: left;
-        font-size: 12px;
-        color: grey;
-        cursor: pointer;
-    }
-    td {
+    tbody tr {
         text-align: center;
-        padding: 4px 0;
     }
 </style>
