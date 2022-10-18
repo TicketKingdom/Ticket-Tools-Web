@@ -45,6 +45,8 @@ export const startEtix = async (id) => {
         await API.post(baseUrl + '/etix/start', { id: id }).then(res => {
             result = res;
         })
+        await getEtixs()
+        return result;
     } catch (err) {
         console.log(err)
     }

@@ -234,7 +234,10 @@
                                 >
                                     {row.url}</td
                                 >
-                                <td>{!isEmpty(row.result) ? row.result : ""}</td
+                                <td
+                                    >{!isEmpty(row.result)
+                                        ? JSON.parse(row.result).length
+                                        : ""}</td
                                 >
                                 <td>{row.interval}</td>
                                 <td
