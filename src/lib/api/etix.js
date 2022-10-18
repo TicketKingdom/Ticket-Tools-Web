@@ -39,6 +39,17 @@ export const newEtix = async (data) => {
     }
 }
 
+export const startEtix = async (id) => {
+    try {
+        let result;
+        await API.post(baseUrl + '/etix/start', { id: id }).then(res => {
+            result = res;
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export const deleteEtix = async (id) => {
     try {
         let result;

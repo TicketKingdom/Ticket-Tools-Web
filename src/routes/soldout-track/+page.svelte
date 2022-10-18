@@ -19,10 +19,10 @@
 
     import { Datatable, rows } from "$lib/common/SimpleDatatables";
     import { editModalSoldOut, newModalSoldOut, etixs } from "../../store";
-    import { getEtixs, deleteEtix } from "$lib/api/etix";
+    import { getEtixs, deleteEtix, startEtix } from "$lib/api/etix";
     import isEmpty from "../../utils/is-empty";
 
-    import etrix from "../../assets/site-logos/etrix.png";
+    import etix from "../../assets/site-logos/etrix.png";
     import eventbrite from "../../assets/site-logos/eventbrite.png";
     import frontgate from "../../assets/site-logos/frontgate.png";
     import seetickets from "../../assets/site-logos/seetickets.png";
@@ -31,7 +31,7 @@
     import prekindle from "../../assets/site-logos/prekindle.png";
     import bigtickets from "../../assets/site-logos/bigtickets.svg";
 
-    let active_leftSidebar = "etrix";
+    let active_leftSidebar = "etix";
 
     const initLoad = async () => {
         await getEtixs();
@@ -89,6 +89,10 @@
         editModalSoldOut.set(id);
     };
 
+    const startEventCheck = async (id) => {
+        await startEtix(id);
+    };
+
     const deleteEvent = async (id) => {
         if (window.confirm("Do you really want to delete this event?")) {
             await deleteEtix(id);
@@ -105,10 +109,10 @@
     <div class="left_sidebar">
         <ul>
             <li
-                class={active_leftSidebar === "etrix" ? "active" : ""}
-                on:click={() => clickTab("etrix")}
+                class={active_leftSidebar === "etix" ? "active" : ""}
+                on:click={() => clickTab("etix")}
             >
-                <img src={etrix} alt="site-logo" />
+                <img src={etix} alt="site-logo" />
                 <p>Etrix</p>
             </li>
             <!-- <li
@@ -215,9 +219,7 @@
                         <th width="5%" data-key="result"> Result</th>
                         <th width="5%"> Interval</th>
                         <th width="5%" data-key="createdAt"> Added On</th>
-                        <th width="5%" data-key="updatedAt">
-                            Last Check</th
-                        >
+                        <th width="5%" data-key="updatedAt"> Last Check</th>
                         <th width="5%">Actions </th>
                     </thead>
                     <tbody>
@@ -246,7 +248,7 @@
                                         .replace("T", " ")}</td
                                 >
                                 <td>
-                                    <span>
+                                    <span on:click={startEventCheck(row._id)}>
                                         <PlayIcon size="1.5x" class="primary" />
                                     </span>
                                     <span on:click={editModalOpen(row._id)}>
