@@ -215,8 +215,8 @@
                     <thead>
                         <th width="5%"> # </th>
                         <th width="5%" data-key="eventName"> Event Name</th>
-                        <th width="20%"> Url</th>
-                        <th width="5%" data-key="result"> Result</th>
+                        <th width="20%"  data-key="url"> Url</th>
+                        <th width="5%"> Result</th>
                         <th width="5%"> Interval</th>
                         <th width="5%" data-key="createdAt"> Added On</th>
                         <th width="5%" data-key="updatedAt"> Last Check</th>

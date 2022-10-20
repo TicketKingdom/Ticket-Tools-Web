@@ -177,6 +177,10 @@ article.dt-table table{
 	border-radius: 12px;
 }
 
+.datatable .dt-table table{
+	margin-top: -20px!important
+}
+
 
 svg.primary {
 	color: blue
