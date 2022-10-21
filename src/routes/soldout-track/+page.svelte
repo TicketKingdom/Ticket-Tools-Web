@@ -113,7 +113,7 @@
                 on:click={() => clickTab("etix")}
             >
                 <img src={etix} alt="site-logo" />
-                <p>Etrix</p>
+                <p>Etix</p>
             </li>
             <!-- <li
                 class={active_leftSidebar === "eventbrite" ? "active" : ""}
