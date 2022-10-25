@@ -19,12 +19,12 @@
             <li class:active={$page.url.pathname === "/"}>
                 <a sveltekit:prefetch href="/">Home</a>
             </li>
-            <!-- <li class:active={$page.url.pathname === "/release-check"}>
+            <li class:active={$page.url.pathname === "/release-check"}>
                 <a sveltekit:prefetch href="/release-check">Counter</a>
             </li>
             <li class:active={$page.url.pathname === "/x-check"}>
                 <a sveltekit:prefetch href="/x-check">X-Checker</a>
-            </li> -->
+            </li>
             <li class:active={$page.url.pathname === "/soldout-track"}>
                 <a sveltekit:prefetch href="/soldout-track">SoldOut-tracker</a>
             </li>

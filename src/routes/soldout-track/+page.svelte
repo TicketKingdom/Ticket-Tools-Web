@@ -6,6 +6,7 @@
         EditIcon,
         DeleteIcon,
         SettingsIcon,
+        PauseIcon,
     } from "svelte-feather-icons";
 
     import Modal from "svelte-simple-modal";
@@ -19,7 +20,7 @@
 
     import { Datatable, rows } from "$lib/common/SimpleDatatables";
     import { editModalSoldOut, newModalSoldOut, etixs } from "../../store";
-    import { getEtixs, deleteEtix, startEtix } from "$lib/api/etix";
+    import { getEtixs, deleteEtix, startEtix, startAllEtix, stopAllEtix } from "$lib/api/etix";
     import isEmpty from "../../utils/is-empty";
 
     import etix from "../../assets/site-logos/etrix.png";
@@ -76,6 +77,12 @@
         },
     };
 
+    let etix_status;
+
+    if (typeof localStorage !== "undefined") {
+        etix_status = localStorage.getItem("etix") === "true";
+    }
+
     let data;
     etixs.subscribe((V) => {
         data = V;
@@ -96,6 +103,20 @@
     const deleteEvent = async (id) => {
         if (window.confirm("Do you really want to delete this event?")) {
             await deleteEtix(id);
+        }
+    };
+    const startAllEvent = async () => {
+        if (!isEmpty(localStorage.getItem("etix"))) {
+            localStorage.setItem("etix", !etix_status);
+            etix_status = !etix_status;
+        } else {
+            localStorage.setItem("etix", true);
+            etix_status = true;
+        }
+        if(etix_status){
+            await startAllEtix();
+        } else {
+            await stopAllEtix();
         }
     };
 </script>
@@ -196,8 +217,12 @@
                 <button class="icon_button">
                     <SettingsIcon />
                 </button>
-                <button class="icon_button">
-                    <PlayIcon />
+                <button class="icon_button" on:click={startAllEvent}>
+                    {#if !etix_status}
+                        <PlayIcon />
+                    {:else}
+                        <PauseIcon />
+                    {/if}
                 </button>
             </div>
         </div>
@@ -215,7 +240,7 @@
                     <thead>
                         <th width="5%"> # </th>
                         <th width="5%" data-key="eventName"> Event Name</th>
-                        <th width="20%"  data-key="url"> Url</th>
+                        <th width="20%" data-key="url"> Url</th>
                         <th width="5%"> Result</th>
                         <th width="5%"> Interval</th>
                         <th width="5%" data-key="createdAt"> Added On</th>

@@ -77,3 +77,27 @@ export const updateEtix = async (data) => {
         console.log(err)
     }
 }
+
+export const startAllEtix = async () => {
+    try {
+        let result;
+        await API.post(baseUrl + '/etix/startAll', {}).then(res => {
+            result = res
+        })
+        return result
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const stopAllEtix = async () => {
+    try {
+        let result;
+        await API.post(baseUrl + '/etix/stopAll', {}).then(res => {
+            result = res
+        })
+        return result
+    } catch (err) {
+        console.log(err)
+    }
+}
