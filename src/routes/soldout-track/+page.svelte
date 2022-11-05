@@ -61,7 +61,7 @@
 
     const settings = {
         pagination: true,
-        rowsPerPage: 25,
+        rowsPerPage: 20,
         columnFilter: false,
         searchInput: false,
         sortable: true,
@@ -119,6 +119,7 @@
             await stopAllEtix();
         }
     };
+
 </script>
 
 <svelte:head>
@@ -241,7 +242,7 @@
                         <th width="5%"> # </th>
                         <th width="5%" data-key="eventName"> Event Name</th>
                         <th width="20%" data-key="url"> Url</th>
-                        <th width="5%"> Result</th>
+                        <th width="5%" > Result</th>
                         <th width="5%"> Interval</th>
                         <th width="5%" data-key="createdAt"> Added On</th>
                         <th width="5%" data-key="updatedAt"> Last Check</th>
@@ -250,7 +251,7 @@
                     <tbody>
                         {#each $rows as row, index}
                             <tr>
-                                <td>{index + 1}</td>
+                                <td>{index+1}</td>
                                 <td>{row.eventName}</td>
                                 <td
                                     style=" overflow: hidden;
