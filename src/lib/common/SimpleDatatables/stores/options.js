@@ -48,7 +48,7 @@ const createOptions = () => {
             const parsed = {
                 sortable:     typeof opt.sortable     === 'boolean' ? opt.sortable     : true,
                 pagination:   typeof opt.pagination   === 'boolean' ? opt.pagination   : true,
-                rowPerPage:   typeof opt.rowPerPage   === 'number'  ? opt.rowPerPage   : 20,
+                rowPerPage:   typeof opt.rowPerPage   === 'number'  ? opt.rowPerPage   : 50,
                 columnFilter: typeof opt.columnFilter === 'boolean' ? opt.columnFilter : false, 
                 scrollY:      typeof opt.scrollY      === 'boolean' ? opt.scrollY      : true, 
                 css:          typeof opt.css          === 'boolean' ? opt.css          : true, 
