@@ -63,7 +63,7 @@
         pagination: true,
         rowsPerPage: 20,
         columnFilter: false,
-        searchInput: false,
+        searchInput: true,
         sortable: true,
         screenX: false,
         labels: {
