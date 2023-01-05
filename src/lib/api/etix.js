@@ -84,6 +84,7 @@ export const startAllEtix = async () => {
         await API.post(baseUrl + '/etix/startAll', {}).then(res => {
             result = res
         })
+        await getEtixs()
         return result
     } catch (err) {
         console.log(err)
@@ -96,6 +97,7 @@ export const stopAllEtix = async () => {
         await API.post(baseUrl + '/etix/stopAll', {}).then(res => {
             result = res
         })
+        await getEtixs()
         return result
     } catch (err) {
         console.log(err)
