@@ -19,11 +19,11 @@
             <li class:active={$page.url.pathname === "/"}>
                 <a sveltekit:prefetch href="/">Home</a>
             </li>
+            <li class:active={$page.url.pathname === "/ticket-list"}>
+                <a sveltekit:prefetch href="/ticket-list">Ticket Buy List</a>
+            </li>
             <li class:active={$page.url.pathname === "/release-check"}>
                 <a sveltekit:prefetch href="/release-check">Counter</a>
-            </li>
-            <li class:active={$page.url.pathname === "/x-check"}>
-                <a sveltekit:prefetch href="/x-check">X-Checker</a>
             </li>
             <li class:active={$page.url.pathname === "/soldout-track"}>
                 <a sveltekit:prefetch href="/soldout-track">SoldOut-tracker</a>
@@ -39,7 +39,7 @@
     header {
         display: flex;
         justify-content: space-between;
-		width: 100%;
+        width: 100%;
     }
 
     .corner a {
@@ -53,16 +53,16 @@
         font-size: 2em;
         color: var(--blue);
     }
-	.corner h2 b{
-		font-size: 1.2em;
-	}
+    .corner h2 b {
+        font-size: 1.2em;
+    }
 
     .corner img {
         margin-left: 20px;
         width: 3em;
         height: 3em;
         object-fit: contain;
-		margin-right: 10px;
+        margin-right: 10px;
     }
 
     nav {
@@ -91,7 +91,7 @@
         align-items: center;
         list-style: none;
         background-size: contain;
-		background-color: var(--background);
+        background-color: var(--background);
     }
 
     li {
