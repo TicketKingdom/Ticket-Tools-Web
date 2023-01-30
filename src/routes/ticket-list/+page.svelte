@@ -48,7 +48,8 @@
                         <table>
                             <thead>
                                 <th width="1%">#</th>
-                                <th width="5%" data-key="artist"> Artist</th>
+                                <th width="5%"> Commentary</th>
+                                <th width="20%" data-key="artist"> Artist</th>
                                 <th width="15%" data-key="venue"> Venue</th>
                                 <th width="10%" data-key="location">
                                     City,State</th
@@ -57,33 +58,22 @@
                                     Event Date</th
                                 >
                                 <th width="5%"> Password</th>
-                                <th
-                                    width="5%"
-                                    style="text-align: right;padding-right: 20px"
-                                >
-                                    Url</th
-                                >
                             </thead>
                             <tbody>
                                 {#each item.ticket_data as row, index}
                                     <tr>
                                         <td>{index + 1}</td>
+                                        <td width="5%"> {row.commentary}</td>
                                         <td
                                             width="5%"
                                             style="padding-left: 10px"
                                         >
-                                            {row.artist}</td
+                                             <a href={row.event_url} target="_blank">{row.artist}</a></td
                                         >
                                         <td width="20%"> {row.venue}</td>
                                         <td width="5%"> {row.location}</td>
                                         <td width="5%"> {row.event_date}</td>
                                         <td width="5%"> {row.password}</td>
-                                        <td
-                                            width="5%"
-                                            style="text-align: right;padding-right: 20px"
-                                        >
-                                            <a href={row.event_url} target="_blank">Ticket</td
-                                        >
                                     </tr>
                                 {/each}
                             </tbody>
