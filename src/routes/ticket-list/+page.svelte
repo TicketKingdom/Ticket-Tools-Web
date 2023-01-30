@@ -61,7 +61,7 @@
                                     width="5%"
                                     style="text-align: right;padding-right: 20px"
                                 >
-                                    Clipboard</th
+                                    Url</th
                                 >
                             </thead>
                             <tbody>
@@ -82,7 +82,7 @@
                                             width="5%"
                                             style="text-align: right;padding-right: 20px"
                                         >
-                                            123</td
+                                            <a href={row.event_url} target="_blank">Ticket</td
                                         >
                                     </tr>
                                 {/each}
@@ -160,5 +160,8 @@
     }
     tr:nth-child(even) {
         background-color: var(--secondary-color);
+    }
+    table a{
+        cursor: pointer;
     }
 </style>
