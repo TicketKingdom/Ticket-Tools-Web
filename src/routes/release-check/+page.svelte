@@ -134,7 +134,7 @@
                 </button>
             </div>
         </div>
-        <TicketContent site_name={active_leftSidebar} />
+        <!-- <TicketContent site_name={active_leftSidebar} /> -->
     </div>
 </div>
 
