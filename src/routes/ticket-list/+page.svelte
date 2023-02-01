@@ -21,72 +21,78 @@
     <meta name="description" content="About this app" />
 </svelte:head>
 
-<div class="content ticket_list">
-    <div class="mini_setting">
-        <div class="update_at">
-            Last Check: <span style="color: var(--blue); font-size: 24px">
-                {#if $lists?.length > 0}
+{#if $lists.length > 0}
+    <div class="content ticket_list">
+        <div class="mini_setting">
+            <div class="update_at">
+                Last Check: <span style="color: var(--blue); font-size: 24px">
                     {$lists[0]?.updatedAt.slice(0, -5).replace("T", " ")}
-                {/if}
-            </span>
+                </span>
+            </div>
+            <div class="buttons">
+                <button class="icon_button">
+                    <SettingsIcon />
+                </button>
+                <button class="icon_button" on:click={startEvent}>
+                    <PlayIcon />
+                </button>
+            </div>
         </div>
-        <div class="buttons">
-            <button class="icon_button">
-                <SettingsIcon />
-            </button>
-            <button class="icon_button" on:click={startEvent}>
-                <PlayIcon />
-            </button>
+        <div class="ticket_content">
+            <div class="table_content">
+                {#each $lists as item, key}
+                    <div style="margin-bottom: 40px" {key}>
+                        <span style="color: var(--blue); font-size: 16px"
+                            >{item.sale_date}</span
+                        >
+                        <table>
+                            <thead>
+                                <th width="1%">#</th>
+                                <th width="5%"> Commentary</th>
+                                <th width="20%" data-key="artist"> Artist</th>
+                                <th width="15%" data-key="venue"> Venue</th>
+                                <th width="8%" data-key="venue"> Venue Cap</th>
+                                <th width="10%" data-key="location">
+                                    City,State</th
+                                >
+                                <th width="5%" data-key="event_date">
+                                    Event Date</th
+                                >
+                                <th width="5%"> Password</th>
+                                <th width="5%" data-key="public_date">
+                                    Public Sale</th
+                                >
+                            </thead>
+                            <tbody>
+                                {#each item.ticket_data as row, index}
+                                    <tr>
+                                        <td>{index + 1}</td>
+                                        <td width="5%"> {row.commentary}</td>
+                                        <td
+                                            width="5%"
+                                            style="padding-left: 10px"
+                                        >
+                                            <a
+                                                href={row.event_url}
+                                                target="_blank">{row.artist}</a
+                                            ></td
+                                        >
+                                        <td width="20%"> {row.venue}</td>
+                                        <td width="5%"> {row.venue_cap}</td>
+                                        <td width="5%"> {row.location}</td>
+                                        <td width="5%"> {row.event_date}</td>
+                                        <td width="5%"> {row.password}</td>
+                                        <td width="5%"> {row.public_date}</td>
+                                    </tr>
+                                {/each}
+                            </tbody>
+                        </table>
+                    </div>
+                {/each}
+            </div>
         </div>
     </div>
-    <div class="ticket_content">
-        <div class="table_content">
-            {#each $lists as item, key}
-                <div style="margin-bottom: 40px" {key}>
-                    <span style="color: var(--blue); font-size: 16px"
-                        >{item.sale_date}</span
-                    >
-                    <table>
-                        <thead>
-                            <th width="1%">#</th>
-                            <th width="5%"> Commentary</th>
-                            <th width="20%" data-key="artist"> Artist</th>
-                            <th width="15%" data-key="venue"> Venue</th>
-                            <th width="8%" data-key="venue"> Venue Cap</th>
-                            <th width="10%" data-key="location"> City,State</th>
-                            <th width="5%" data-key="event_date">
-                                Event Date</th
-                            >
-                            <th width="5%"> Password</th>
-                            <th width="5%" data-key="public_date">
-                                Public Sale</th
-                            >
-                        </thead>
-                        <tbody>
-                            {#each item.ticket_data as row, index}
-                                <tr>
-                                    <td>{index + 1}</td>
-                                    <td width="5%"> {row.commentary}</td>
-                                    <td width="5%" style="padding-left: 10px">
-                                        <a href={row.event_url} target="_blank"
-                                            >{row.artist}</a
-                                        ></td
-                                    >
-                                    <td width="20%"> {row.venue}</td>
-                                    <td width="5%"> {row.venue_cap}</td>
-                                    <td width="5%"> {row.location}</td>
-                                    <td width="5%"> {row.event_date}</td>
-                                    <td width="5%"> {row.password}</td>
-                                    <td width="5%"> {row.public_date}</td>
-                                </tr>
-                            {/each}
-                        </tbody>
-                    </table>
-                </div>
-            {/each}
-        </div>
-    </div>
-</div>
+{/if}
 
 <style>
     .content {
