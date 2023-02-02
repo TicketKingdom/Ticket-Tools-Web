@@ -21,25 +21,27 @@
     <meta name="description" content="About this app" />
 </svelte:head>
 
-{#if $lists.length > 0}
-    <div class="content ticket_list">
-        <div class="mini_setting">
-            <div class="update_at">
-                Last Check: <span style="color: var(--blue); font-size: 24px">
+<div class="content ticket_list">
+    <div class="mini_setting">
+        <div class="update_at">
+            Last Check: <span style="color: var(--blue); font-size: 24px">
+                {#if $lists.length > 0}
                     {$lists[0]?.updatedAt.slice(0, -5).replace("T", " ")}
-                </span>
-            </div>
-            <div class="buttons">
-                <button class="icon_button">
-                    <SettingsIcon />
-                </button>
-                <button class="icon_button" on:click={startEvent}>
-                    <PlayIcon />
-                </button>
-            </div>
+                {/if}
+            </span>
         </div>
-        <div class="ticket_content">
-            <div class="table_content">
+        <div class="buttons">
+            <button class="icon_button">
+                <SettingsIcon />
+            </button>
+            <button class="icon_button" on:click={startEvent}>
+                <PlayIcon />
+            </button>
+        </div>
+    </div>
+    <div class="ticket_content">
+        <div class="table_content">
+            {#if $lists.length > 0}
                 {#each $lists as item, key}
                     <div style="margin-bottom: 40px" {key}>
                         <span style="color: var(--blue); font-size: 16px"
@@ -89,10 +91,10 @@
                         </table>
                     </div>
                 {/each}
-            </div>
+            {/if}
         </div>
     </div>
-{/if}
+</div>
 
 <style>
     .content {
