@@ -24,11 +24,13 @@
 <div class="content ticket_list">
     <div class="mini_setting">
         <div class="update_at">
-            Last Check: <span style="color: var(--blue); font-size: 24px">
-                {#if $lists.length > 0}
+            {#if $lists.length > 0}
+                Last Check: <span style="color: var(--blue); font-size: 24px">
                     {$lists[0]?.updatedAt.slice(0, -5).replace("T", " ")}
-                {/if}
-            </span>
+                </span>
+            {:else}
+                <span>There is no data. Check resource or restart the check.</span>
+            {/if}
         </div>
         <div class="buttons">
             <button class="icon_button">
