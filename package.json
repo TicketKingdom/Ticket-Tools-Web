@@ -10,10 +10,10 @@
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.25.0",
-		"@sveltejs/adapter-node": "^1.0.0-next.98",
+		"@sveltejs/adapter-node": "1.0.0-next.98",
 		"@sveltejs/kit": "next",
-		"svelte": "^3.46.0",
-		"vite": "^3.0.8"
+		"svelte": "3.46.0",
+		"vite": "3.0.8"
 	},
 	"type": "module",
 	"dependencies": {
