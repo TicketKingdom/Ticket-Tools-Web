@@ -29,7 +29,9 @@
                     {$lists[0]?.updatedAt.slice(0, -5).replace("T", " ")}
                 </span>
             {:else}
-                <span>There is no data. Check resource or restart the check.</span>
+                <span
+                    >There is no data. Check resource or restart the check.</span
+                >
             {/if}
         </div>
         <div class="buttons">
@@ -54,6 +56,9 @@
                                 <th width="1%">#</th>
                                 <th width="5%"> Commentary</th>
                                 <th width="20%" data-key="artist"> Artist</th>
+                                <th width="5%" data-key="public_date">
+                                    Price</th
+                                >
                                 <th width="15%" data-key="venue"> Venue</th>
                                 <th width="8%" data-key="venue"> Venue Cap</th>
                                 <th width="10%" data-key="location">
@@ -65,9 +70,6 @@
                                 <th width="5%"> Password</th>
                                 <th width="5%" data-key="public_date">
                                     Public Sale</th
-                                >
-                                <th width="5%" data-key="public_date">
-                                    Price</th
                                 >
                             </thead>
                             <tbody>
@@ -84,13 +86,13 @@
                                                 target="_blank">{row.artist}</a
                                             ></td
                                         >
+                                        <td width="5%"> {row.price}</td>
                                         <td width="20%"> {row.venue}</td>
                                         <td width="5%"> {row.venue_cap}</td>
                                         <td width="5%"> {row.location}</td>
                                         <td width="5%"> {row.event_date}</td>
                                         <td width="5%"> {row.password}</td>
                                         <td width="5%"> {row.public_date}</td>
-                                        <td width="5%"> {row.price}</td>
                                     </tr>
                                 {/each}
                             </tbody>
