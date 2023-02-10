@@ -66,6 +66,9 @@
                                 <th width="5%" data-key="public_date">
                                     Public Sale</th
                                 >
+                                <th width="5%" data-key="public_date">
+                                    Price</th
+                                >
                             </thead>
                             <tbody>
                                 {#each item.ticket_data as row, index}
@@ -87,6 +90,7 @@
                                         <td width="5%"> {row.event_date}</td>
                                         <td width="5%"> {row.password}</td>
                                         <td width="5%"> {row.public_date}</td>
+                                        <td width="5%"> {row.price}</td>
                                     </tr>
                                 {/each}
                             </tbody>
