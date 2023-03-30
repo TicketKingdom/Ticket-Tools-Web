@@ -1,16 +1,18 @@
 <script>
     import { newModalCounter } from "../../../store";
 
-    import { newEtix } from "$lib/api/etix";
-    let url, interval;
+    import { newCounterEtix } from "$lib/api/counter/etix";
+    let url, interval, notify, presale;
 
     const addNewEvent = async () => {
         event.preventDefault();
         let data = {
             url: url,
             interval: interval,
+            notify_amount: notify,
+            presale: presale,
         };
-        await newEtix(data).then(() => {
+        await newCounterEtix(data).then(() => {
             newModalCounter.set(null);
         });
     };
@@ -26,6 +28,14 @@
         <div class="input_group">
             <label for="interval">interval:</label>
             <input name="interval" type="number" bind:value={interval} />
+        </div>
+        <div class="input_group">
+            <label for="notify">notification:</label>
+            <input name="notify" type="number" bind:value={notify} />
+        </div>
+        <div class="input_group">
+            <label for="presale">presale:</label>
+            <input name="presale" type="text" bind:value={presale} />
         </div>
         <div class="submit_button">
             <button type="submit">Submit</button>

@@ -1,6 +1,7 @@
 <script>
     import Select from "svelte-select";
     import Switch from "$lib/common/Switch.svelte";
+    import Modal from "svelte-simple-modal";
 
     import etrix from "../../assets/site-logos/etrix.png";
     import eventbrite from "../../assets/site-logos/eventbrite.png";
@@ -38,6 +39,9 @@
     const openNewModal = () => {
         newModalCounter.set(NewModal);
     }
+    const editModalOpen = (id) => {
+        editModalCounter.set(id);
+    };
 </script>
 
 <svelte:head>
@@ -128,9 +132,11 @@
                 <button class="icon_button">
                     <SettingsIcon />
                 </button>
-                <button class="icon_button" on:click={openNewModal}>
-                    <PlusIcon />
-                </button>
+                <Modal show={$newModalCounter}>
+                    <button class="icon_button" on:click={openNewModal}>
+                        <PlusIcon />
+                    </button>
+                </Modal>
                 <button class="icon_button">
                     <PlayIcon />
                 </button>
