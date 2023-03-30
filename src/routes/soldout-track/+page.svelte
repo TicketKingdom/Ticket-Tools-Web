@@ -190,30 +190,6 @@
     </div>
     <div class="right_content">
         <div class="mini_setting">
-            <!-- <div style="min-width: 250px" class="captcha">
-                <Select
-                    {items}
-                    {value}
-                    on:select={handleSelect}
-                    inputStyles="font-size: 18px;"
-                />
-            </div>
-            <div style="margin-left: 20px; display: flex">
-                <Switch
-                    bind:value={sliderValue}
-                    label="Proxy: "
-                    fontSize={18}
-                    design="slider"
-                />
-                {#if active_leftSidebar === "etrix"}
-                    <Switch
-                        bind:value={sliderValue}
-                        label="Decrease: "
-                        fontSize={18}
-                        design="slider"
-                    />
-                {/if}
-            </div> -->
             <div class="buttons" style="float:right">
                 <button class="icon_button">
                     <SettingsIcon />

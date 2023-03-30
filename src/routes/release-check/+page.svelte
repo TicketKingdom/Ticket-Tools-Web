@@ -1,7 +1,6 @@
 <script>
     import Select from "svelte-select";
     import Switch from "$lib/common/Switch.svelte";
-    import TicketContent from "$lib/TicketContent/index.svelte";
 
     import etrix from "../../assets/site-logos/etrix.png";
     import eventbrite from "../../assets/site-logos/eventbrite.png";
@@ -12,7 +11,12 @@
     import prekindle from "../../assets/site-logos/prekindle.png";
     import bigtickets from "../../assets/site-logos/bigtickets.svg";
 
-    import { SettingsIcon, PlayIcon } from "svelte-feather-icons";
+    import { SettingsIcon, PlayIcon, PlusIcon } from "svelte-feather-icons";
+
+    import { editModalCounter, newModalCounter } from "../../store";
+
+    import NewModal from "./modal/NewModal.svelte";
+    import EditModal from "./modal/EditModal.svelte";
 
     let active_leftSidebar = "etrix";
 
@@ -31,6 +35,9 @@
     const handleSelect = (event) => {
         console.log("selected item", event.detail);
     };
+    const openNewModal = () => {
+        newModalCounter.set(NewModal);
+    }
 </script>
 
 <svelte:head>
@@ -113,21 +120,16 @@
                 <Switch
                     bind:value={sliderValue}
                     label="Proxy: "
-                    fontSize={18}
+                    fontSize={16}
                     design="slider"
                 />
-                {#if active_leftSidebar === "etrix"}
-                    <Switch
-                        bind:value={sliderValue}
-                        label="Decrease: "
-                        fontSize={18}
-                        design="slider"
-                    />
-                {/if}
             </div>
             <div class="buttons">
                 <button class="icon_button">
                     <SettingsIcon />
+                </button>
+                <button class="icon_button" on:click={openNewModal}>
+                    <PlusIcon />
                 </button>
                 <button class="icon_button">
                     <PlayIcon />
