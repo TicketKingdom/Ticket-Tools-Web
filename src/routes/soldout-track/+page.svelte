@@ -1,5 +1,4 @@
 <script>
-    import { getContext } from "svelte";
     import {
         PlusIcon,
         PlayIcon,
@@ -12,25 +11,28 @@
     import Modal from "svelte-simple-modal";
     import OwnModal from "$lib/common/OwnModal.svelte";
 
-    import Select from "svelte-select";
-    import Switch from "$lib/common/Switch.svelte";
-
     import NewModal from "./modal/NewModal.svelte";
     import EditModal from "./modal/EditModal.svelte";
 
     import { Datatable, rows } from "$lib/common/SimpleDatatables";
     import { editModalSoldOut, newModalSoldOut, etixs } from "../../store";
-    import { getEtixs, deleteEtix, startEtix, startAllEtix, stopAllEtix } from "$lib/api/etix";
+    import {
+        getEtixs,
+        deleteEtix,
+        startEtix,
+        startAllEtix,
+        stopAllEtix,
+    } from "$lib/api/etix";
     import isEmpty from "../../utils/is-empty";
 
     import etix from "../../assets/site-logos/etrix.png";
-    import eventbrite from "../../assets/site-logos/eventbrite.png";
-    import frontgate from "../../assets/site-logos/frontgate.png";
-    import seetickets from "../../assets/site-logos/seetickets.png";
-    import showclix from "../../assets/site-logos/showclix.png";
-    import ticketweb from "../../assets/site-logos/ticketweb.png";
-    import prekindle from "../../assets/site-logos/prekindle.png";
-    import bigtickets from "../../assets/site-logos/bigtickets.svg";
+    // import eventbrite from "../../assets/site-logos/eventbrite.png";
+    // import frontgate from "../../assets/site-logos/frontgate.png";
+    // import seetickets from "../../assets/site-logos/seetickets.png";
+    // import showclix from "../../assets/site-logos/showclix.png";
+    // import ticketweb from "../../assets/site-logos/ticketweb.png";
+    // import prekindle from "../../assets/site-logos/prekindle.png";
+    // import bigtickets from "../../assets/site-logos/bigtickets.svg";
 
     let active_leftSidebar = "etix";
 
@@ -41,19 +43,6 @@
     $: if (true) {
         initLoad();
     }
-
-    // let items = [
-    //     { value: "capmonster", label: "Capmonster" },
-    //     { value: "anticaptcha", label: "AntiCaptcha" },
-    // ];
-
-    // let value = { value: "capmonster", label: "Capmonster" };
-
-    // let sliderValue;
-
-    // const handleSelect = (event) => {
-    //     console.log("selected item", event.detail);
-    // };
 
     const clickTab = (value) => {
         active_leftSidebar = value;
@@ -105,6 +94,7 @@
             await deleteEtix(id);
         }
     };
+
     const startAllEvent = async () => {
         if (!isEmpty(localStorage.getItem("etix"))) {
             localStorage.setItem("etix", !etix_status);
@@ -113,13 +103,12 @@
             localStorage.setItem("etix", true);
             etix_status = true;
         }
-        if(etix_status){
+        if (etix_status) {
             await startAllEtix();
         } else {
             await stopAllEtix();
         }
     };
-
 </script>
 
 <svelte:head>
@@ -218,7 +207,7 @@
                         <th width="5%"> # </th>
                         <th width="5%" data-key="eventName"> Event Name</th>
                         <th width="20%" data-key="url"> Url</th>
-                        <th width="5%" > Result</th>
+                        <th width="5%"> Result</th>
                         <th width="5%"> Interval</th>
                         <th width="5%" data-key="createdAt"> Added On</th>
                         <th width="5%" data-key="updatedAt"> Last Check</th>
@@ -227,7 +216,7 @@
                     <tbody>
                         {#each $rows as row, index}
                             <tr>
-                                <td>{index+1}</td>
+                                <td>{index + 1}</td>
                                 <td>{row.eventName}</td>
                                 <td
                                     style=" overflow: hidden;
@@ -348,10 +337,6 @@
         align-items: center;
         margin-bottom: 20px;
     }
-    /* .right_content .mini_setting .captcha {
-        --itemHoverBG: #55cdf8;
-        --itemIsActiveBG: #55cdf8;
-    } */
 
     .buttons {
         display: flex;

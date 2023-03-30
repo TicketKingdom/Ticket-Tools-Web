@@ -3,6 +3,8 @@
     import Switch from "$lib/common/Switch.svelte";
     import Modal from "svelte-simple-modal";
 
+	import { getCounterEtix } from './../../lib/api/counter/etix.js';
+
     import etrix from "../../assets/site-logos/etrix.png";
     import eventbrite from "../../assets/site-logos/eventbrite.png";
     import frontgate from "../../assets/site-logos/frontgate.png";
@@ -14,10 +16,18 @@
 
     import { SettingsIcon, PlayIcon, PlusIcon } from "svelte-feather-icons";
 
-    import { editModalCounter, newModalCounter } from "../../store";
+    import { editModalCounter, newModalCounter, counters } from "../../store";
 
     import NewModal from "./modal/NewModal.svelte";
     import EditModal from "./modal/EditModal.svelte";
+
+    const initLoad = async () => {
+        await getCounterEtix();
+    };
+
+    $: if (true) {
+        initLoad();
+    }
 
     let active_leftSidebar = "etrix";
 
@@ -42,6 +52,8 @@
     const editModalOpen = (id) => {
         editModalCounter.set(id);
     };
+
+    $: console.log($counters)
 </script>
 
 <svelte:head>
@@ -142,7 +154,7 @@
                 </button>
             </div>
         </div>
-        <!-- <TicketContent site_name={active_leftSidebar} /> -->
+        
     </div>
 </div>
 

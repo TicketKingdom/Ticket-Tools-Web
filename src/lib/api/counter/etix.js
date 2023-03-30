@@ -1,18 +1,18 @@
 import API from "../../../utils/api";
 let baseUrl = "http://127.0.0.1:8037/api/counter";
-import { etixs } from "../../../store";
+import { counters } from "../../../store";
 
-// export const getEtixs = async () => {
-//     try {
-//         let data;
-//         await API.get(baseUrl + '/etix').then(res => {
-//             etixs.set(res)
-//         });
-//         return data
-//     } catch (err) {
-//         console.log(err)
-//     }
-// }
+export const getCounterEtix = async () => {
+    try {
+        let data;
+        await API.get(baseUrl + '/etix').then(res => {
+            counters.set(res)
+        });
+        return data
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 // export const getEtixById = async (id) => {
 //     try {
@@ -32,7 +32,7 @@ export const newCounterEtix = async (data) => {
         await API.post(baseUrl + '/etix', data).then(res => {
             result = res
         })
-        // await getEtixs()
+        await getCounterEtix()
         return result
     } catch (err) {
         console.log(err)
