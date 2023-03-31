@@ -22,8 +22,8 @@
             <li class:active={$page.url.pathname === "/ticket-list"}>
                 <a sveltekit:prefetch href="/ticket-list">Ticket Buy List</a>
             </li>
-            <li class:active={$page.url.pathname === "/release-check"}>
-                <a sveltekit:prefetch href="/release-check">Counter</a>
+            <li class:active={$page.url.pathname === "/counter"}>
+                <a sveltekit:prefetch href="/counter">Counter</a>
             </li>
             <li class:active={$page.url.pathname === "/soldout-track"}>
                 <a sveltekit:prefetch href="/soldout-track">SoldOut-tracker</a>

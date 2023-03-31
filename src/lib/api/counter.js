@@ -1,11 +1,11 @@
-import API from "../../../utils/api";
+import API from "../../utils/api";
 let baseUrl = "http://127.0.0.1:8037/api/counter";
-import { counters } from "../../../store";
+import { counters } from "../../store";
 
-export const getCounterEtix = async () => {
+export const getCounter = async (website) => {
     try {
         let data;
-        await API.get(baseUrl + '/etix').then(res => {
+        await API.get(baseUrl + '/' + website).then(res => {
             counters.set(res)
         });
         return data
@@ -26,31 +26,31 @@ export const getCounterEtix = async () => {
 //     }
 // }
 
-export const newCounterEtix = async (data) => {
+export const newCounter = async (data) => {
     try {
         let result;
         await API.post(baseUrl + '/etix', data).then(res => {
             result = res
         })
-        await getCounterEtix()
         return result
     } catch (err) {
         console.log(err)
     }
 }
 
-// export const startEtix = async (id) => {
-//     try {
-//         let result;
-//         await API.post(baseUrl + '/etix/start', { id: id }).then(res => {
-//             result = res;
-//         })
-//         await getEtixs()
-//         return result;
-//     } catch (err) {
-//         console.log(err)
-//     }
-// }
+export const startCounter = async (id) => {
+    console.log('id', id)
+    try {
+        let result;
+        await API.post(baseUrl + '/etix/start', { id: id }).then(res => {
+            result = res;
+        })
+        // await getEtixs()
+        return result;
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 // export const deleteEtix = async (id) => {
 //     try {

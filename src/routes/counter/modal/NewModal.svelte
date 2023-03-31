@@ -1,7 +1,7 @@
 <script>
     import { newModalCounter } from "../../../store";
 
-    import { newCounterEtix } from "$lib/api/counter/etix";
+    import { newCounter } from "$lib/api/counter";
     let url, interval, notify, presale;
 
     const addNewEvent = async () => {
@@ -12,7 +12,7 @@
             notify_amount: notify,
             presale: presale,
         };
-        await newCounterEtix(data).then(() => {
+        await newCounter(data).then(() => {
             newModalCounter.set(null);
         });
     };
