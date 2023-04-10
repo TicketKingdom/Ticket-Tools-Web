@@ -25,7 +25,7 @@
     } from "$lib/api/etix";
     import isEmpty from "../../utils/is-empty";
 
-    import etix from "../../assets/site-logos/etrix.png";
+    import etix from "../../assets/site-logos/etix.png";
     // import eventbrite from "../../assets/site-logos/eventbrite.png";
     // import frontgate from "../../assets/site-logos/frontgate.png";
     // import seetickets from "../../assets/site-logos/seetickets.png";
