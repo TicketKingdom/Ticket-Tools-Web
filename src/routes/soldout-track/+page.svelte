@@ -15,7 +15,12 @@
     import EditModal from "./modal/EditModal.svelte";
 
     import { Datatable, rows } from "$lib/common/SimpleDatatables";
-    import { editModalSoldOut, newModalSoldOut, etixs } from "../../store";
+    import {
+        editModalSoldOut,
+        newModalSoldOut,
+        etixs,
+        cron_status,
+    } from "../../store";
     import {
         getEtixs,
         deleteEtix,
@@ -67,12 +72,9 @@
     };
 
     let etix_status;
+    cron_status.subscribe((s) => (etix_status = s));
 
-    if (typeof localStorage !== "undefined") {
-        etix_status = localStorage.getItem("etix") === "true";
-    }
-
-    let data;
+    let data=[];
     etixs.subscribe((V) => {
         data = V;
     });
@@ -96,13 +98,7 @@
     };
 
     const startAllEvent = async () => {
-        if (!isEmpty(localStorage.getItem("etix"))) {
-            localStorage.setItem("etix", !etix_status);
-            etix_status = !etix_status;
-        } else {
-            localStorage.setItem("etix", true);
-            etix_status = true;
-        }
+        etix_status = !etix_status
         if (etix_status) {
             await startAllEtix();
         } else {

@@ -1,12 +1,13 @@
 import API from "../../utils/api";
 let baseUrl = "http://127.0.0.1:8037/api";
-import { etixs } from "../../store";
+import { etixs, cron_status } from "../../store";
 
 export const getEtixs = async () => {
     try {
         let data;
         await API.get(baseUrl + '/etix').then(res => {
-            etixs.set(res)
+            etixs.set(res.etixs)
+            cron_status.set(res.cron_status)
         });
         return data
     } catch (err) {
