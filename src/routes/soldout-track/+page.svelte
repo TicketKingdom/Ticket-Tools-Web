@@ -99,11 +99,7 @@
 
     const startAllEvent = async () => {
         etix_status = !etix_status
-        if (etix_status) {
-            await startAllEtix();
-        } else {
-            await stopAllEtix();
-        }
+        await startAllEtix();
     };
 </script>
 
