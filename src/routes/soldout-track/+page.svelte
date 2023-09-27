@@ -26,7 +26,6 @@
         deleteEtix,
         startEtix,
         startAllEtix,
-        stopAllEtix,
     } from "$lib/api/etix";
     import isEmpty from "../../utils/is-empty";
 
@@ -35,7 +34,7 @@
     // import frontgate from "../../assets/site-logos/frontgate.png";
     // import seetickets from "../../assets/site-logos/seetickets.png";
     // import showclix from "../../assets/site-logos/showclix.png";
-    // import ticketweb from "../../assets/site-logos/ticketweb.png";
+    import ticketweb from "../../assets/site-logos/ticketweb.png";
     // import prekindle from "../../assets/site-logos/prekindle.png";
     // import bigtickets from "../../assets/site-logos/bigtickets.svg";
 
@@ -138,7 +137,7 @@
             >
                 <img src={frontgate} alt="site-logo" />
                 <p>FrontGate</p>
-            </li>
+            </li> -->
             <li
                 class={active_leftSidebar === "ticketweb" ? "active" : ""}
                 on:click={() => clickTab("ticketweb")}
@@ -146,7 +145,7 @@
                 <img src={ticketweb} alt="site-logo" />
                 <p>TicketWeb</p>
             </li>
-            <li
+            <!-- <li
                 class={active_leftSidebar === "seetickets" ? "active" : ""}
                 on:click={() => clickTab("seetickets")}
             >
