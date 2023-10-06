@@ -1,47 +1,32 @@
 <script>
-    import {
-        PlusIcon,
-        PlayIcon,
-        EditIcon,
-        DeleteIcon,
-        SettingsIcon,
-        PauseIcon,
-    } from "svelte-feather-icons";
+    import { PlayIcon, SettingsIcon, PauseIcon } from "svelte-feather-icons";
 
-    import Modal from "svelte-simple-modal";
-    import OwnModal from "$lib/common/OwnModal.svelte";
+    import { datas, cron_status } from "../../store";
 
-    import NewModal from "./modal/NewModal.svelte";
-    import EditModal from "./modal/EditModal.svelte";
-
-    import { Datatable, rows } from "$lib/common/SimpleDatatables";
-    import {
-        editModalSoldOut,
-        newModalSoldOut,
-        etixs,
-        cron_status,
-    } from "../../store";
-    import {
-        getEtixs,
-        deleteEtix,
-        startEtix,
-        startAllEtix,
-    } from "$lib/api/etix";
-    import isEmpty from "../../utils/is-empty";
+    import { getEtixs, getTicketWebs, startAllEtix } from "$lib/api/soldOutTracker";
 
     import etix from "../../assets/site-logos/etix.png";
+    import ticketweb from "../../assets/site-logos/ticketweb.png";
     // import eventbrite from "../../assets/site-logos/eventbrite.png";
     // import frontgate from "../../assets/site-logos/frontgate.png";
     // import seetickets from "../../assets/site-logos/seetickets.png";
     // import showclix from "../../assets/site-logos/showclix.png";
-    import ticketweb from "../../assets/site-logos/ticketweb.png";
     // import prekindle from "../../assets/site-logos/prekindle.png";
     // import bigtickets from "../../assets/site-logos/bigtickets.svg";
+
+    import DataTable from "$lib/TicketContent/index.svelte";
 
     let active_leftSidebar = "etix";
 
     const initLoad = async () => {
-        await getEtixs();
+        switch (active_leftSidebar) {
+            case "etix":
+                await getEtixs();
+                break;
+            case "ticketweb":
+                await getTicketWebs();
+                break;
+        }
     };
 
     $: if (true) {
@@ -52,52 +37,16 @@
         active_leftSidebar = value;
     };
 
-    const settings = {
-        pagination: true,
-        rowsPerPage: 20,
-        columnFilter: false,
-        searchInput: true,
-        sortable: true,
-        screenX: false,
-        labels: {
-            noRows: "No entries to found",
-            previous: "<",
-            next: ">",
-        },
-        blocks: {
-            searchInput: false,
-            paginationRowCount: false,
-        },
-    };
-
     let etix_status;
     cron_status.subscribe((s) => (etix_status = s));
 
-    let data=[];
-    etixs.subscribe((V) => {
+    let data = [];
+    datas.subscribe((V) => {
         data = V;
     });
 
-    const openNewModal = () => {
-        newModalSoldOut.set(NewModal);
-    };
-
-    const editModalOpen = (id) => {
-        editModalSoldOut.set(id);
-    };
-
-    const startEventCheck = async (id) => {
-        await startEtix(id);
-    };
-
-    const deleteEvent = async (id) => {
-        if (window.confirm("Do you really want to delete this event?")) {
-            await deleteEtix(id);
-        }
-    };
-
     const startAllEvent = async () => {
-        etix_status = !etix_status
+        etix_status = !etix_status;
         await startAllEtix();
     };
 </script>
@@ -183,79 +132,11 @@
                 </button>
             </div>
         </div>
-
         <div class="ticket_content">
-            <div class="new_ticket">
-                <Modal show={$newModalSoldOut}>
-                    <button on:click={openNewModal}>
-                        <PlusIcon /><span>New</span>
-                    </button>
-                </Modal>
-            </div>
-            <div class="table_content">
-                <Datatable {settings} {data}>
-                    <thead>
-                        <th width="5%"> # </th>
-                        <th width="5%" data-key="eventName"> Event Name</th>
-                        <th width="20%" data-key="url"> Url</th>
-                        <th width="5%"> Result</th>
-                        <th width="5%"> Interval</th>
-                        <th width="5%" data-key="createdAt"> Added On</th>
-                        <th width="5%" data-key="updatedAt"> Last Check</th>
-                        <th width="5%">Actions </th>
-                    </thead>
-                    <tbody>
-                        {#each $rows as row, index}
-                            <tr>
-                                <td>{index + 1}</td>
-                                <td>{row.eventName}</td>
-                                <td
-                                    style=" overflow: hidden;
-                                            text-overflow: ellipsis; "
-                                    class="truncation_text"
-                                >
-                                    {row.url}</td
-                                >
-                                <td
-                                    >{!isEmpty(row.result)
-                                        ? JSON.parse(row.result).length
-                                        : ""}</td
-                                >
-                                <td>{row.interval}</td>
-                                <td
-                                    >{row.createdAt
-                                        .slice(0, -5)
-                                        .replace("T", " ")}</td
-                                >
-                                <td
-                                    >{row.updatedAt
-                                        .slice(0, -5)
-                                        .replace("T", " ")}</td
-                                >
-                                <td>
-                                    <span on:click={startEventCheck(row._id)}>
-                                        <PlayIcon size="1.5x" class="primary" />
-                                    </span>
-                                    <span on:click={editModalOpen(row._id)}>
-                                        <EditIcon size="1.5x" class="success" />
-                                    </span>
-                                    <span on:click={() => deleteEvent(row._id)}>
-                                        <DeleteIcon
-                                            size="1.5x"
-                                            class="danger"
-                                        />
-                                    </span>
-                                </td>
-                            </tr>
-                        {/each}
-                    </tbody>
-                </Datatable>
-            </div>
+            <DataTable {data} site_name={active_leftSidebar}><solt /></DataTable
+            >
         </div>
     </div>
-    {#if $editModalSoldOut}
-        <OwnModal modalContent={EditModal} />
-    {/if}
 </div>
 
 <style>

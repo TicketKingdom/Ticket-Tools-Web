@@ -7,6 +7,7 @@ export const newModalCounter = writable("");
 export const editModalCounter = writable("");
 export const cron_status = writable("");
 
-export const etixs = writable({});
+export const datas = writable({});
+
 export const counters = writable({});
 export const lists = writable({});

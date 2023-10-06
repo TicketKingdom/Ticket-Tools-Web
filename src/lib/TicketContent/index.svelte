@@ -6,16 +6,53 @@
         DeleteIcon,
     } from "svelte-feather-icons";
     import { Datatable, rows } from "$lib/common/SimpleDatatables";
+    import isEmpty from "../../utils/is-empty";
+    import {
+        getEtixs,
+        deleteEtix,
+        startEtix,
+        startAllEtix,
+    } from "$lib/api/etix";
 
+    import {
+        editModalSoldOut,
+        newModalSoldOut,
+        etixs,
+        cron_status,
+    } from "../../store";
+
+    import Modal from "svelte-simple-modal";
+    import OwnModal from "$lib/common/OwnModal.svelte";
+
+    import NewModal from "./modal/NewModal.svelte";
+    import EditModal from "./modal/EditModal.svelte";
+
+    export let data = [];
     export let site_name = "";
 
-    console.log(site_name);
+    const editModalOpen = (id) => {
+        editModalSoldOut.set(id);
+    };
+
+    const startEventCheck = async (id) => {
+        await startEtix(id);
+    };
+
+    const deleteEvent = async (id) => {
+        if (window.confirm("Do you really want to delete this event?")) {
+            await deleteEtix(id);
+        }
+    };
+
+    const openNewModal = () => {
+        newModalSoldOut.set(NewModal);
+    };
 
     const settings = {
         pagination: true,
-        rowsPerPage: 25,
+        rowsPerPage: 20,
         columnFilter: false,
-        searchInput: false,
+        searchInput: true,
         sortable: true,
         screenX: false,
         labels: {
@@ -28,67 +65,33 @@
             paginationRowCount: false,
         },
     };
-
-    let data = [
-        {
-            index: "0",
-            url: "https://event.etix.com/ticket/online/performanceSale.do?specifiedYearMonth=true&performance_id=3101270&country=US&language=en&method=restoreToken",
-            name: "BILLY STRINGS",
-            date: "2022-08-12",
-            result: 78,
-            interval: 259200,
-            notication: 5000,
-            row: 1,
-            added_date: "2022-08-15",
-            last_check_date: "2022-08-12",
-            cart_time: true,
-            presale_pw: "",
-        },
-        {
-            index: "1",
-            url: "https://event.etix.com/ticket/online/performanceSale.do?specifiedYearMonth=true&performance_id=3101270&country=US&language=en&method=restoreToken",
-            name: "BILLY STRINGS",
-            date: "2022-08-12",
-            result: 78,
-            interval: 259200,
-            notication: 5000,
-            row: 1,
-            added_date: "2022-08-15",
-            last_check_date: "2022-08-12",
-            cart_time: true,
-            presale_pw: "",
-        },
-    ];
 </script>
 
-<div class="ticket_content">
+<div>
     <div class="new_ticket">
-        <button>
-            <PlusIcon /><span>New</span>
-        </button>
+        <Modal show={$newModalSoldOut}>
+            <button on:click={openNewModal}>
+                <PlusIcon /><span>New</span>
+            </button>
+        </Modal>
     </div>
     <div class="table_content">
         <Datatable {settings} {data}>
             <thead>
-                <th width="3%" data-key="index">#</th>
-                <th width="5%" data-key="name">Event Name</th>
-                <th width="15%">Url</th>
-                <th width="5%" data-key="date">Date</th>
-                <th width="3%" data-key="result">Result</th>
-                <th width="5%">Interval</th>
-                <th width="5%" data-key="notication">Notification</th>
-                <th data-key="row">Row</th>
-                <th width="5%" data-key="added_date">Added On</th>
-                <th width="5%" data-key="last_check_date">Last Check</th>
-                <th width="3%">Cart <br />Timer</th>
-                <th data-key="presale_pw">Presale Password</th>
-                <th>actions</th>
+                <th width="5%"> # </th>
+                <th width="5%" data-key="eventName"> Event Name</th>
+                <th width="20%" data-key="url"> Url</th>
+                <th width="5%"> Result</th>
+                <th width="5%"> Interval</th>
+                <th width="5%" data-key="createdAt"> Added On</th>
+                <th width="5%" data-key="updatedAt"> Last Check</th>
+                <th width="5%">Actions </th>
             </thead>
             <tbody>
                 {#each $rows as row, index}
                     <tr>
                         <td>{index + 1}</td>
-                        <td>{row.name}</td>
+                        <td>{row.eventName}</td>
                         <td
                             style=" overflow: hidden;
                                     text-overflow: ellipsis; "
@@ -96,25 +99,34 @@
                         >
                             {row.url}</td
                         >
-                        <td>{row.date}</td>
-                        <td>{row.result}</td>
+                        <td
+                            >{!isEmpty(row.result)
+                                ? JSON.parse(row.result).length
+                                : ""}</td
+                        >
                         <td>{row.interval}</td>
-                        <td>{row.notication}</td>
-                        <td>{row.row}</td>
-                        <td>{row.added_date}</td>
-                        <td>{row.last_check_date}</td>
-                        <td>{row.cart_time}</td>
-                        <td>{row.presale_pw}</td>
+                        <td>{row.createdAt.slice(0, -5).replace("T", " ")}</td>
+                        <td>{row.updatedAt.slice(0, -5).replace("T", " ")}</td>
                         <td>
-                            <PlayIcon size="1.5x" class="primary" />
-                            <EditIcon size="1.5x" class="success" />
-                            <DeleteIcon size="1.5x" class="danger" />
+                            <span on:click={startEventCheck(row._id)}>
+                                <PlayIcon size="1.5x" class="primary" />
+                            </span>
+                            <span on:click={editModalOpen(row._id)}>
+                                <EditIcon size="1.5x" class="success" />
+                            </span>
+                            <span on:click={() => deleteEvent(row._id)}>
+                                <DeleteIcon size="1.5x" class="danger" />
+                            </span>
                         </td>
                     </tr>
                 {/each}
             </tbody>
         </Datatable>
     </div>
+
+    {#if $editModalSoldOut}
+        <OwnModal modalContent={EditModal} />
+    {/if}
 </div>
 
 <style>
