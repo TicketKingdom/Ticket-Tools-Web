@@ -1,7 +1,7 @@
 <script>
     import { newModalSoldOut } from "../../../store";
 
-    import { newEtix } from "$lib/api/etix";
+    import { newEtix } from "$lib/api/soldOutTracker";
     let url, interval;
 
     const addNewEvent = async () => {

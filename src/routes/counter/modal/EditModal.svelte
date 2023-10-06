@@ -1,7 +1,7 @@
 <script>
     import { editModalSoldOut } from "../../../store";
 
-    import { updateEtix, getEtixById } from "$lib/api/etix";
+    import { updateEtix, getEtixById } from "$lib/api/soldOutTracker";
     import { onMount } from "svelte";
 
     let url, eventName, interval, data;

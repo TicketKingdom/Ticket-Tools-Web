@@ -8,17 +8,13 @@
     import { Datatable, rows } from "$lib/common/SimpleDatatables";
     import isEmpty from "../../utils/is-empty";
     import {
-        getEtixs,
         deleteEtix,
         startEtix,
-        startAllEtix,
-    } from "$lib/api/etix";
+    } from "$lib/api/soldOutTracker";
 
     import {
         editModalSoldOut,
         newModalSoldOut,
-        etixs,
-        cron_status,
     } from "../../store";
 
     import Modal from "svelte-simple-modal";

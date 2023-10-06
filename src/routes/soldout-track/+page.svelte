@@ -3,7 +3,7 @@
 
     import { datas, cron_status } from "../../store";
 
-    import { getEtixs, getTicketWebs, startAllEtix } from "$lib/api/soldOutTracker";
+    import { getDatas, startAllEtix } from "$lib/api/soldOutTracker";
 
     import etix from "../../assets/site-logos/etix.png";
     import ticketweb from "../../assets/site-logos/ticketweb.png";
@@ -19,17 +19,10 @@
     let active_leftSidebar = "etix";
 
     const initLoad = async () => {
-        switch (active_leftSidebar) {
-            case "etix":
-                await getEtixs();
-                break;
-            case "ticketweb":
-                await getTicketWebs();
-                break;
-        }
+        await getDatas(active_leftSidebar);
     };
 
-    $: if (true) {
+    $: if (active_leftSidebar) {
         initLoad();
     }
 
