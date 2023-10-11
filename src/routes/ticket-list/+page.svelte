@@ -1,6 +1,6 @@
 <script>
     import { SettingsIcon, PlayIcon } from "svelte-feather-icons";
-    import { getLists, startList } from "$lib/api/list";
+    import { getLists, startList } from "$lib/api/dailyList";
     import { lists } from "../../store";
 
     const initLoad = async () => {
