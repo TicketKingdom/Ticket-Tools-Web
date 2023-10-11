@@ -83,7 +83,7 @@
 
 <svelte:head>
     <title>Release-Checker</title>
-    <meta name="description" content="About this app" />
+    <meta name="description" content="Release checker" />
 </svelte:head>
 
 <div class="content">

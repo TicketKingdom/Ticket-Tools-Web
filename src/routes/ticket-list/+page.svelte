@@ -18,7 +18,7 @@
 
 <svelte:head>
     <title>Ticket Buy List</title>
-    <meta name="description" content="About this app" />
+    <meta name="description" content="Get ticket url daily" />
 </svelte:head>
 
 <div class="content ticket_list">
