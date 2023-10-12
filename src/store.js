@@ -9,5 +9,7 @@ export const cron_status = writable("");
 
 export const datas = writable({});
 
+export const souldoutTrackerSidebar = writable("etix");
+
 export const counters = writable({});
 export const lists = writable({});

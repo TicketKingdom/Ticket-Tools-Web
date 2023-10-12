@@ -1,7 +1,7 @@
 <script>
     import { PlayIcon, SettingsIcon, PauseIcon } from "svelte-feather-icons";
 
-    import { datas, cron_status } from "../../store";
+    import { datas, cron_status, souldoutTrackerSidebar } from "../../store";
 
     import { getDatas, startAllEtix } from "$lib/api/soldOutTracker";
 
@@ -19,7 +19,7 @@
     let active_leftSidebar = "etix";
 
     const initLoad = async () => {
-        await getDatas(active_leftSidebar);
+        await getDatas();
     };
 
     $: if (active_leftSidebar) {
@@ -28,6 +28,7 @@
 
     const clickTab = (value) => {
         active_leftSidebar = value;
+        souldoutTrackerSidebar.set(value)
     };
 
     let etix_status;

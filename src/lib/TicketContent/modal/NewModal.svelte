@@ -1,7 +1,7 @@
 <script>
     import { newModalSoldOut } from "../../../store";
 
-    import { newEtix } from "$lib/api/soldOutTracker";
+    import { newData } from "$lib/api/soldOutTracker";
     let url, interval;
 
     const addNewEvent = async () => {
@@ -10,7 +10,7 @@
             url: url,
             interval: interval,
         };
-        await newEtix(data).then(() => {
+        await newData(data).then(() => {
             newModalSoldOut.set(null);
         });
     };

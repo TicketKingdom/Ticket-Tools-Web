@@ -1,11 +1,17 @@
 import API from "../../utils/api";
 let baseUrl = "http://127.0.0.1:8037/api";
-import { datas, cron_status } from "../../store";
+import { datas, cron_status, souldoutTrackerSidebar } from "../../store";
 
-export const getDatas = async (site_type) => {
+let souldoutTrackerSidebar_val = "etix";
+
+souldoutTrackerSidebar.subscribe((value) => {
+	souldoutTrackerSidebar_val = value
+}); 
+
+export const getDatas = async () => {
     try {
         let data = [];
-        await API.get(baseUrl + `/soldout_tracker/${site_type}`).then(res => {
+        await API.get(baseUrl + `/soldout_tracker/${souldoutTrackerSidebar_val}`).then(res => {
             datas.set(res.datas)
             cron_status.set(res.cron_status)
         });
@@ -27,10 +33,10 @@ export const getEtixById = async (id) => {
     }
 }
 
-export const newEtix = async (data) => {
+export const newData = async (data) => {
     try {
         let result;
-        await API.post(baseUrl + '/soldout_tracker/etix', data).then(res => {
+        await API.post(baseUrl + `/soldout_tracker/${souldoutTrackerSidebar_val}`, data).then(res => {
             result = res
         })
         await getDatas()
