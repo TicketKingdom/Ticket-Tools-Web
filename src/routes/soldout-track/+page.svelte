@@ -126,8 +126,7 @@
             </div>
         </div>
         <div class="ticket_content">
-            <DataTable {data} site_name={active_leftSidebar}><solt /></DataTable
-            >
+            <DataTable {data} site_name={active_leftSidebar} />
         </div>
     </div>
 </div>
@@ -224,35 +223,5 @@
     .icon_button:active {
         background-color: #1bbdf8;
         color: grey;
-    }
-
-    .new_ticket {
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 10px;
-    }
-    .new_ticket button {
-        width: 94px;
-        color: #fff;
-        background-color: #28a745;
-        border-color: #28a745;
-        border-style: solid;
-        padding: 0.375rem 0.75rem;
-        font-size: 1rem;
-        border-radius: 0.25rem;
-        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-            border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .new_ticket button:hover {
-        background-color: #218838;
-        border-color: #1e7e34;
-    }
-
-    tbody tr {
-        text-align: center;
     }
 </style>

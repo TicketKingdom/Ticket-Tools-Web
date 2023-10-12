@@ -25,6 +25,7 @@
 
     export let data = [];
     export let site_name = "";
+    console.log(site_name)
 
     const editModalOpen = (id) => {
         editModalSoldOut.set(id);
@@ -126,10 +127,9 @@
 </div>
 
 <style>
-    .ticket_content {
+    /* .ticket_content {
         margin-top: 20px;
-    }
-
+    } */
     .new_ticket {
         display: flex;
         justify-content: flex-end;
