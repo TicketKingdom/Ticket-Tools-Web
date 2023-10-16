@@ -8,7 +8,7 @@
     import { Datatable, rows } from "$lib/common/SimpleDatatables";
     import isEmpty from "../../utils/is-empty";
     import {
-        deleteEtix,
+        deleteData,
         startEtix,
     } from "$lib/api/soldOutTracker";
 
@@ -37,7 +37,7 @@
 
     const deleteEvent = async (id) => {
         if (window.confirm("Do you really want to delete this event?")) {
-            await deleteEtix(id);
+            await deleteData(id);
         }
     };
 

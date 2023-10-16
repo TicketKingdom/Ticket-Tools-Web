@@ -59,10 +59,10 @@ export const startEtix = async (id) => {
     }
 }
 
-export const deleteEtix = async (id) => {
+export const deleteData = async (id) => {
     try {
         let result;
-        await API.delete(baseUrl + `/soldout_tracker/etix/${id}`).then(res => {
+        await API.delete(baseUrl + `/soldout_tracker/${souldoutTrackerSidebar_val}/${id}`).then(res => {
             result = res
         })
         await getDatas()
