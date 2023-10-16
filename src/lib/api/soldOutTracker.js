@@ -49,7 +49,7 @@ export const newData = async (data) => {
 export const startEtix = async (id) => {
     try {
         let result;
-        await API.post(baseUrl + '/soldout_tracker/etix/start', { id: id }).then(res => {
+        await API.post(baseUrl + `/soldout_tracker/${souldoutTrackerSidebar_val}/start`, { id: id }).then(res => {
             result = res;
         })
         await getDatas()
