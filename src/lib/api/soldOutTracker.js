@@ -21,10 +21,10 @@ export const getDatas = async () => {
     }
 }
 
-export const getEtixById = async (id) => {
+export const getDataById = async (id) => {
     try {
         let data;
-        await API.get(baseUrl + `/soldout_tracker/etix/${id}`).then(res => {
+        await API.get(baseUrl + `/soldout_tracker/${souldoutTrackerSidebar_val}/${id}`).then(res => {
             data = res
         })
         return data
@@ -72,10 +72,10 @@ export const deleteEtix = async (id) => {
     }
 }
 
-export const updateEtix = async (data) => {
+export const updateData = async (data) => {
     try {
         let result;
-        await API.put(baseUrl + '/soldout_tracker/etix', data).then(res => {
+        await API.put(baseUrl + `/soldout_tracker/${souldoutTrackerSidebar_val}`, data).then(res => {
             result = res
         })
         await getDatas()

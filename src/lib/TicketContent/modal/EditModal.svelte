@@ -1,13 +1,13 @@
 <script>
     import { editModalSoldOut } from "../../../store";
 
-    import { updateEtix, getEtixById } from "$lib/api/soldOutTracker";
+    import { updateData, getDataById } from "$lib/api/soldOutTracker";
     import { onMount } from "svelte";
 
     let url, eventName, interval, data;
 
     onMount(async () => {
-        data = await getEtixById($editModalSoldOut);
+        data = await getDataById($editModalSoldOut);
         url = data.url;
         eventName = data.eventName;
         interval = data.interval;
@@ -21,7 +21,7 @@
             url: url,
             interval: interval,
         };
-        await updateEtix(data).then(() => {
+        await updateData(data).then(() => {
             editModalSoldOut.set(null);
         });
     };
