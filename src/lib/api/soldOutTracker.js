@@ -85,10 +85,10 @@ export const updateData = async (data) => {
     }
 }
 
-export const startAllEtix = async () => {
+export const startAllDatas = async () => {
     try {
         let result;
-        await API.post(baseUrl + '/soldout_tracker/etix/startAll', {}).then(res => {
+        await API.post(baseUrl + `/soldout_tracker/${souldoutTrackerSidebar_val}/startAll`, {}).then(res => {
             result = res
         })
         await getDatas()

@@ -24,8 +24,8 @@
     import EditModal from "./modal/EditModal.svelte";
 
     export let data = [];
-    export let site_name = "";
-    console.log(site_name)
+    // export let site_name = "";
+    // console.log(site_name)
 
     const editModalOpen = (id) => {
         editModalSoldOut.set(id);
