@@ -3,10 +3,11 @@
 
     import { datas, cron_status, souldoutTrackerSidebar } from "../../store";
 
-    import { getDatas, startAllDatas } from "$lib/api/soldOutTracker";
+    import { getDatas, startAllDatas } from "$lib/api/eventAddTracker";
 
-    import etix from "../../assets/site-logos/etix.png";
-    import ticketweb from "../../assets/site-logos/ticketweb.png";
+    import ticketmaster from "../../assets/site-logos/ticketmaster.png";
+    // import etix from "../../assets/site-logos/etix.png";
+    // import ticketweb from "../../assets/site-logos/ticketweb.png";
     // import eventbrite from "../../assets/site-logos/eventbrite.png";
     // import frontgate from "../../assets/site-logos/frontgate.png";
     // import seetickets from "../../assets/site-logos/seetickets.png";
@@ -57,7 +58,7 @@
                 class={active_leftSidebar === "etix" ? "active" : ""}
                 on:click={() => clickTab("etix")}
             >
-                <img src={etix} alt="site-logo" />
+                <img src={ticketmaster} alt="site-logo" />
                 <p>TicketMaster</p>
             </li>
             <!-- <li
