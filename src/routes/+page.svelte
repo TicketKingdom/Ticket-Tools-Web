@@ -1,5 +1,18 @@
 <script>
+    import { onMount } from "svelte";
+
     export const prerender = true;
+
+    // start soldout tracker for etix and ticketweb
+    import { startAllDatas } from "$lib/api/soldOutTracker";
+    import { souldoutTrackerSidebar } from "../store";
+
+    onMount(async ()=>{
+        souldoutTrackerSidebar.set("etix")
+        await startAllDatas();
+        souldoutTrackerSidebar.set("ticketweb")
+        await startAllDatas();
+    })
 </script>
 
 <svelte:head>
