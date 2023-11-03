@@ -1,7 +1,7 @@
 <script>
     import { PlayIcon, SettingsIcon, PauseIcon } from "svelte-feather-icons";
 
-    import { datas, cron_status, souldoutTrackerSidebar } from "../../store";
+    import { datas, cron_status, eventAddTrackerSidebar } from "../../store";
 
     import { getDatas, startAllDatas } from "$lib/api/eventAddTracker";
 
@@ -17,7 +17,7 @@
 
     import DataTable from "$lib/TicketContent/index.svelte";
 
-    let active_leftSidebar = "etix";
+    let active_leftSidebar = "ticketmaster";
 
     const initLoad = async () => {
         await getDatas();
@@ -29,7 +29,7 @@
 
     const clickTab = (value) => {
         active_leftSidebar = value;
-        souldoutTrackerSidebar.set(value)
+        eventAddTrackerSidebar.set(value)
     };
 
     let etix_status;
@@ -55,8 +55,8 @@
     <div class="left_sidebar">
         <ul>
             <li
-                class={active_leftSidebar === "etix" ? "active" : ""}
-                on:click={() => clickTab("etix")}
+                class={active_leftSidebar === "ticketmaster" ? "active" : ""}
+                on:click={() => clickTab("ticketmaster")}
             >
                 <img src={ticketmaster} alt="site-logo" />
                 <p>TicketMaster</p>
