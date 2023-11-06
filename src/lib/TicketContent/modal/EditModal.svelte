@@ -2,12 +2,21 @@
     import { editModalSoldOut } from "../../../store";
 
     import { updateData, getDataById } from "$lib/api/soldOutTracker";
+    import {
+        updateData_eventAdd,
+        getDataById__eventAdd,
+    } from "$lib/api/eventAddTracker";
     import { onMount } from "svelte";
+    import { page } from "$app/stores";
 
     let url, eventName, interval, data;
 
     onMount(async () => {
-        data = await getDataById($editModalSoldOut);
+        if ($page.routeId == "eventadd-track") {
+            data = await getDataById__eventAdd($editModalSoldOut);
+        } else {
+            data = await getDataById($editModalSoldOut);
+        }
         url = data.url;
         eventName = data.eventName;
         interval = data.interval;
@@ -21,9 +30,15 @@
             url: url,
             interval: interval,
         };
-        await updateData(data).then(() => {
-            editModalSoldOut.set(null);
-        });
+        if ($page.routeId == "eventadd-track") {
+            await updateData_eventAdd(data).then(() => {
+                editModalSoldOut.set(null);
+            });
+        } else {
+            await updateData(data).then(() => {
+                editModalSoldOut.set(null);
+            });
+        }
     };
 </script>
 

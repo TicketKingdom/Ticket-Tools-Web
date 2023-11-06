@@ -21,7 +21,7 @@ export const getDatas = async () => {
     }
 }
 
-export const getDataById = async (id) => {
+export const getDataById__eventAdd = async (id) => {
     try {
         let data;
         await API.get(baseUrl + `/eventAdd_tracker/${eventAddTrackerSidebar_val}/${id}`).then(res => {
@@ -46,7 +46,7 @@ export const newData_eventAdd = async (data) => {
     }
 }
 
-export const startEtix = async (id) => {
+export const start_eventAdd = async (id) => {
     try {
         let result;
         await API.post(baseUrl + `/eventAdd_tracker/${eventAddTrackerSidebar_val}/start`, { id: id }).then(res => {
@@ -59,7 +59,7 @@ export const startEtix = async (id) => {
     }
 }
 
-export const deleteData = async (id) => {
+export const deleteData_eventAdd = async (id) => {
     try {
         let result;
         await API.delete(baseUrl + `/eventAdd_tracker/${eventAddTrackerSidebar_val}/${id}`).then(res => {
@@ -72,7 +72,7 @@ export const deleteData = async (id) => {
     }
 }
 
-export const updateData = async (data) => {
+export const updateData_eventAdd = async (data) => {
     try {
         let result;
         await API.put(baseUrl + `/eventAdd_tracker/${eventAddTrackerSidebar_val}`, data).then(res => {

@@ -7,15 +7,15 @@
     } from "svelte-feather-icons";
     import { Datatable, rows } from "$lib/common/SimpleDatatables";
     import isEmpty from "../../utils/is-empty";
-    import {
-        deleteData,
-        startEtix,
-    } from "$lib/api/soldOutTracker";
+    import { deleteData, startEtix } from "$lib/api/soldOutTracker";
 
     import {
-        editModalSoldOut,
-        newModalSoldOut,
-    } from "../../store";
+        deleteData_eventAdd,
+        start_eventAdd,
+    } from "$lib/api/eventAddTracker";
+
+    import { editModalSoldOut, newModalSoldOut } from "../../store";
+    import { page } from "$app/stores";
 
     import Modal from "svelte-simple-modal";
     import OwnModal from "$lib/common/OwnModal.svelte";
@@ -25,19 +25,27 @@
 
     export let data = [];
     export let site_name = "";
-    console.log(site_name)
+    console.log(site_name);
 
     const editModalOpen = (id) => {
         editModalSoldOut.set(id);
     };
 
     const startEventCheck = async (id) => {
-        await startEtix(id);
+        if ($page.routeId == "eventadd-track") {
+            await start_eventAdd(id);
+        } else {
+            await startEtix(id);
+        }
     };
 
     const deleteEvent = async (id) => {
         if (window.confirm("Do you really want to delete this event?")) {
-            await deleteData(id);
+            if ($page.routeId == "eventadd-track") {
+                await deleteData_eventAdd(id);
+            } else {
+                await deleteData(id);
+            }
         }
     };
 
