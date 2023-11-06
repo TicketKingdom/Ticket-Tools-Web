@@ -53,7 +53,7 @@
         sortable: true,
         screenX: false,
         labels: {
-            noRows: "No entries to found",
+            noRows: "No entries to found.",
             previous: "<",
             next: ">",
         },
