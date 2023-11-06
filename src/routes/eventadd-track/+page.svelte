@@ -29,7 +29,7 @@
 
     const clickTab = (value) => {
         active_leftSidebar = value;
-        eventAddTrackerSidebar.set(value)
+        eventAddTrackerSidebar.set(value);
     };
 
     let etix_status;

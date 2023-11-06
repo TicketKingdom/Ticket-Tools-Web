@@ -1,7 +1,8 @@
 <script>
     import { newModalSoldOut } from "../../../store";
-
+    import { page } from "$app/stores";
     import { newData } from "$lib/api/soldOutTracker";
+    import { newData_eventAdd } from "$lib/api/eventAddTracker";
     let url, interval;
 
     const addNewEvent = async () => {
@@ -10,9 +11,15 @@
             url: url,
             interval: interval,
         };
-        await newData(data).then(() => {
-            newModalSoldOut.set(null);
-        });
+        if ($page.routeId == "eventadd-track") {
+            await newData_eventAdd(data).then(() => {
+                newModalSoldOut.set(null);
+            });
+        } else {
+            await newData(data).then(() => {
+                newModalSoldOut.set(null);
+            });
+        }
     };
 </script>
 

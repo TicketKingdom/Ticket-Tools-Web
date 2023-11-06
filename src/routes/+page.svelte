@@ -7,12 +7,12 @@
     import { startAllDatas } from "$lib/api/soldOutTracker";
     import { souldoutTrackerSidebar } from "../store";
 
-    onMount(async ()=>{
-        souldoutTrackerSidebar.set("etix")
+    onMount(async () => {
+        souldoutTrackerSidebar.set("etix");
         await startAllDatas();
-        souldoutTrackerSidebar.set("ticketweb")
+        souldoutTrackerSidebar.set("ticketweb");
         await startAllDatas();
-    })
+    });
 </script>
 
 <svelte:head>
@@ -28,8 +28,8 @@
                 <img src="svelte-welcome.png" alt="Welcome" />
             </picture>
         </span>
-        Welcome to Ticket Tools.<br/>
-		You can get tickets from 8 web sites and can see results.
+        Welcome to Ticket Tools.<br />
+        You can get tickets from 8 web sites and can see results.
     </h1>
 </section>
 
@@ -39,13 +39,13 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-		max-width: 1024px;
+        max-width: 1024px;
         flex: 1;
     }
 
     h1 {
         width: 100%;
-		margin-top: 100px;
+        margin-top: 100px;
     }
 
     .welcome {

@@ -5,8 +5,8 @@ import { datas, cron_status, eventAddTrackerSidebar } from "../../store";
 let eventAddTrackerSidebar_val = "ticketmaster";
 
 eventAddTrackerSidebar.subscribe((value) => {
-	eventAddTrackerSidebar_val = value
-}); 
+    eventAddTrackerSidebar_val = value
+});
 
 export const getDatas = async () => {
     try {
@@ -33,7 +33,7 @@ export const getDataById = async (id) => {
     }
 }
 
-export const newData = async (data) => {
+export const newData_eventAdd = async (data) => {
     try {
         let result;
         await API.post(baseUrl + `/eventAdd_tracker/${eventAddTrackerSidebar_val}`, data).then(res => {
