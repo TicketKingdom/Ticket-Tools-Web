@@ -102,7 +102,7 @@
                                     text-overflow: ellipsis; "
                             class="truncation_text"
                         >
-                            {row.url}</td
+                            <a href={row.url} target="_blank">{row.url}</td
                         >
                         <td
                             >{!isEmpty(row.result)
