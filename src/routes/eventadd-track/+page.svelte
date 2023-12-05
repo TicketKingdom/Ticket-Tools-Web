@@ -6,7 +6,7 @@
     import { getDatas, startAllDatas } from "$lib/api/eventAddTracker";
 
     import ticketmaster from "../../assets/site-logos/ticketmaster.png";
-    // import etix from "../../assets/site-logos/etix.png";
+    import axs from "../../assets/site-logos/axs.png";
     // import ticketweb from "../../assets/site-logos/ticketweb.png";
     // import eventbrite from "../../assets/site-logos/eventbrite.png";
     // import frontgate from "../../assets/site-logos/frontgate.png";
@@ -61,13 +61,13 @@
                 <img src={ticketmaster} alt="site-logo" />
                 <p>TicketMaster</p>
             </li>
-            <!-- <li
-                class={active_leftSidebar === "etix" ? "active" : ""}
-                on:click={() => clickTab("etix")}
+            <li
+                class={active_leftSidebar === "axs" ? "active" : ""}
+                on:click={() => clickTab("axs")}
             >
-                <img src={etix} alt="site-logo" />
-                <p>Etix</p>
-            </li> -->
+                <img src={axs} alt="site-logo" />
+                <p>Axs</p>
+            </li>
             <!-- <li
                 class={active_leftSidebar === "eventbrite" ? "active" : ""}
                 on:click={() => clickTab("eventbrite")}
