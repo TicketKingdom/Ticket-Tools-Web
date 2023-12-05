@@ -1,5 +1,5 @@
 import API from "../../utils/api";
-let baseUrl = "http://127.0.0.1:8080/api/counter";
+let baseUrl = "http://127.0.0.1:8037/api/counter";
 import { counters } from "../../store";
 
 export const getCounter = async (website) => {
