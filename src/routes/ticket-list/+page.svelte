@@ -24,7 +24,7 @@
 <div class="content ticket_list">
     <div class="mini_setting">
         <div class="update_at">
-            {#if $lists.length > 0}
+            {#if $lists?.length > 0}
                 Last Check: <span style="color: var(--blue); font-size: 24px">
                     {$lists[0]?.updatedAt.slice(0, -5).replace("T", " ")}
                 </span>
@@ -45,7 +45,7 @@
     </div>
     <div class="ticket_content">
         <div class="table_content">
-            {#if $lists.length > 0}
+            {#if $lists?.length > 0}
                 {#each $lists as item, key}
                     <div style="margin-bottom: 40px" {key}>
                         <span style="color: var(--blue); font-size: 16px"
