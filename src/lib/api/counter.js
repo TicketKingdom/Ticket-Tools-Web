@@ -29,7 +29,7 @@ export const getCounter = async (website) => {
 export const newCounter = async (data) => {
     try {
         let result;
-        await API.post(baseUrl + '/counter', data).then(res => {
+        await API.post(baseUrl, data).then(res => {
             result = res
         })
         return result
