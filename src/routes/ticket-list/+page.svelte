@@ -1,5 +1,9 @@
 <script>
-    import { SettingsIcon, PlayIcon } from "svelte-feather-icons";
+    import {
+        SettingsIcon,
+        PlayIcon,
+        FastForwardIcon,
+    } from "svelte-feather-icons";
     import { getLists, startList } from "$lib/api/dailyList";
     import { lists } from "../../store";
 
@@ -11,8 +15,8 @@
         initLoad();
     }
 
-    const startEvent = async () => {
-        await startList();
+    const startEvent = async (date) => {
+        await startList(date);
     };
 </script>
 
@@ -38,8 +42,11 @@
             <button class="icon_button">
                 <SettingsIcon />
             </button>
-            <button class="icon_button" on:click={startEvent}>
+            <button class="icon_button" on:click={() => startEvent("today")}>
                 <PlayIcon />
+            </button>
+            <button class="icon_button" on:click={() => startEvent("tmr")}>
+                <FastForwardIcon />
             </button>
         </div>
     </div>

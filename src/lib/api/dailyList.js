@@ -15,11 +15,11 @@ export const getLists = async () => {
     }
 }
 
-export const startList = async () => {
-    console.log("start data")
+export const startList = async (date) => {
+    console.log("start data", date)
     try {
         let result;
-        await API.post(baseUrl + '/list').then(res => {
+        await API.post(baseUrl + '/list', { date: date }).then(res => {
             result = res;
         })
         await getLists()
