@@ -5,13 +5,18 @@
 
     // start soldout tracker for etix and ticketweb
     import { startAllDatas } from "$lib/api/soldOutTracker";
-    import { souldoutTrackerSidebar } from "../store";
+    import { souldoutTrackerSidebar, eventAddTrackerSidebar } from "../store";
+    import { startAllDatasEA } from "$lib/api/eventAddTracker";
 
     onMount(async () => {
         souldoutTrackerSidebar.set("etix");
         await startAllDatas();
         souldoutTrackerSidebar.set("ticketweb");
         await startAllDatas();
+        eventAddTrackerSidebar.set("ticketmaster");
+        await startAllDatasEA();
+        eventAddTrackerSidebar.set("axs");
+        await startAllDatasEA();
     });
 </script>
 

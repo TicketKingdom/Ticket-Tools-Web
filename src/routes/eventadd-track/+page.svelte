@@ -3,7 +3,7 @@
 
     import { datas, cron_status, eventAddTrackerSidebar } from "../../store";
 
-    import { getDatas, startAllDatas } from "$lib/api/eventAddTracker";
+    import { getDatas, startAllDatasEA } from "$lib/api/eventAddTracker";
 
     import ticketmaster from "../../assets/site-logos/ticketmaster.png";
     import axs from "../../assets/site-logos/axs.png";
@@ -42,7 +42,7 @@
 
     const startAllEvent = async () => {
         etix_status = !etix_status;
-        await startAllDatas();
+        await startAllDatasEA();
     };
 </script>
 

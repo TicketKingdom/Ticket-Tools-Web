@@ -85,7 +85,7 @@ export const updateData_eventAdd = async (data) => {
     }
 }
 
-export const startAllDatas = async () => {
+export const startAllDatasEA = async () => {
     try {
         let result;
         await API.post(baseUrl + `/eventAdd_tracker/${eventAddTrackerSidebar_val}/startAll`, {}).then(res => {
