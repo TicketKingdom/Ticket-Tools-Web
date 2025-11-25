@@ -39,8 +39,11 @@
             {/if}
         </div>
         <div class="buttons">
-            <button class="icon_button">
-                <SettingsIcon />
+             <button class="new_icon_button" on:click={() => startEvent("v3_today")}>
+                <PlayIcon />
+            </button>
+            <button class="new_icon_button" on:click={() => startEvent("v3_tmr")}>
+                <FastForwardIcon />
             </button>
             <button class="icon_button" on:click={() => startEvent("today")}>
                 <PlayIcon />
@@ -155,6 +158,26 @@
     }
     .icon_button:active {
         background-color: #1bbdf8;
+        color: grey;
+    }
+
+    .new_icon_button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 7px;
+        margin-left: 10px;
+        color: #eb33c0;
+        border-radius: 8px;
+        border-color: #eb33c0;
+        border-style: solid;
+    }
+     .new_icon_button:hover {
+        background-color: #eb33c0;
+        color: white;
+    }
+    .new_icon_button:active {
+        background-color: #eb33c0;
         color: grey;
     }
     .ticket_content {
